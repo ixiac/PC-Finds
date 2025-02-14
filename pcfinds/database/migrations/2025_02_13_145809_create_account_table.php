@@ -11,12 +11,12 @@ return new class extends Migration {
             $table->id(); // Primary key
             $table->text('username')->unique();
             $table->text('password');
-            $table->tinyInteger('role')->default(1);
+            $table->integer('role')->default(1);
             $table->text('first_name');
             $table->text('last_name');
             $table->text('email')->unique();
             $table->char('sex');
-            $table->bigint('contact_number')->nullable();
+            $table->integer('contact_number')->nullable();
             $table->text('address')->nullable();
             $table->timestamp('date_created')->useCurrent();
             $table->text('image')->nullable();
