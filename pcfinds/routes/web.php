@@ -8,19 +8,18 @@ use App\Http\Controllers\SignInController;
 
 # Route for the sign-up form
 Route::get('/form', function () {
-    return view('sign_up');
-});
+    return view('paging.sign_up');
+})->name('sign-up');
 
 # Route for form sign-up submission
 Route::post('/form', [RegistrationControl::class, 'account_register'])->name('account_register_route');
 
-
-
-// Sign in
+// Sign In
 
 # Route for the sign-in form
 Route::get('/form-sign-in', function () {
-    return view('sign_in');
-});
+    return view('paging.sign_in');
+})->name('sign-in');
 
+# Route for form sign-in submission
 Route::post('/form-sign-in', [SignInController::class, 'account_sign_in'])->name('account_sign_in_route');
