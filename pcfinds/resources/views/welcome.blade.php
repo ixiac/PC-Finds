@@ -4,12 +4,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @include('partials.head')
+    @include('layout.head')
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 </head>
 
 <body>
-    @include('partials.navbar')
+    @include('layout.navbar')
 
     <!-- Content -->
     <div>
@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    @include('partials.footer')
+    @include('layout.footer')
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

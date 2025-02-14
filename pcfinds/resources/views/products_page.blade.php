@@ -4,322 +4,213 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Products Page</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    @include('layout.head')
+
     <style>
-        body {
-            font-family: 'Figtree', sans-serif;
-            overflow-x: hidden;
-        }
-
-        footer {
-            background-color: #343a40;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px 0;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .footer-section {
-            flex: 1;
-            padding: 10px;
-            min-width: 200px;
-        }
-
-        .footer-section h5 {
-            margin-bottom: 15px;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-bottom {
-            margin-top: 20px;
-        }
-
-        .navbar {
-            height: 80px;
-        }
-
-        .navbar-brand img {
-            height: 100%;
+        .card-images {
+            height: 150px;
+            width: 200px;
         }
     </style>
 </head>
 
 <body>
-    @include('partials.navbar')
+    @include('layout.navbar')
 
     <!-- Content -->
-    <div class="row mt-5 mx-5">
-        <div class="col-md-6">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search for products"
-                    aria-label="Search for products" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+    <div class="" style="margin: 0 130px;">
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search for products"
+                        aria-label="Search for products" aria-describedby="button-addon2"
+                        style="border: 1px solid #2fa572">
+                    <div class="input-group-append">
+                        <button class="btn" type="button" id="button-addon2"
+                            style="border: 1px solid #2fa572; background-color: #2fa572; color: white;">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 d-flex justify-content-end">
+                <div class="btn-group" role="group" aria-label="Order Actions">
+                    <button type="button" class="btn btn-sm mx-1" style="height: 38px;">
+                        <span class="iconify" data-icon="mdi:cart" data-inline="false"></span>
+                    </button>
+                    <button type="button" class="btn mx-1" style="height: 38px;">
+                        <span class="iconify" data-icon="mdi:history" data-inline="false"></span>
+                    </button>
+                    <button type="button" class="btn btn-sm mx-1" style="height: 38px;">
+                        <span class="iconify" data-icon="mdi:clipboard-list-outline" data-inline="false"></span>
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-primary btn-sm mx-1" style="height: 38px;">B 1</button>
-                <button type="button" class="btn btn-secondary btn-sm mx-1" style="height: 38px;">B 2</button>
-                <button type="button" class="btn btn-success btn-sm mx-1" style="height: 38px;">B 3</button>
+        <div class="row mt-5">
+            <div class="col-12">
+                <div id="carouselExampleIndicators2" class="car-container carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" style="border-radius: 10px">
+                        <div class="carousel-item active">
+                            <img src="images/p-banner-2.jpg" class="d-block w-100" alt="Slide 1" style="height: 430px;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/p-banner-1.jpg" class="d-block w-100" alt="Slide 2" style="height: 430px;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/p-banner-3.jpg" class="d-block w-100" alt="Slide 3" style="height: 430px;">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators2" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-5 mx-5">
-        <div class="col-12">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 3">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+
+        <!-- Category Line -->
+        <div class="row" style="margin-top: 100px">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <h4>GPUs</h4>
+                <button class="btn btn-sm mb-1" style="color: #2fa572;">
+                    See All <span class="iconify mb-1" data-icon="mdi:arrow-right" data-inline="false"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-1.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Jelo RTX 0710</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-1.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Jelo RTX 0710</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-1.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Jelo RTX 0710</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-1.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Jelo RTX 0710</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-1.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Jelo RTX 0710</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-1.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Jelo RTX 0710</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 100px">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <h4>GPUs</h4>
+                <button class="btn btn-sm mb-1" style="color: #2fa572;">
+                    See All <span class="iconify mb-1" data-icon="mdi:arrow-right" data-inline="false"></span>
                 </button>
             </div>
         </div>
-    </div>
-
-    <!-- Category Line -->
-    <div class="row mt-5 mx-5">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h4>Category Name</h4>
-            <button class="btn btn-outline-primary btn-sm">See All</button>
-        </div>
-    </div>
-    <div class="row mt-3 mx-5">
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
+        <div class="row mt-3">
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-2.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Abin RX 0301</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-2.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Abin RX 0301</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-2.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Abin RX 0301</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-2.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Abin RX 0301</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-2.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Abin RX 0301</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="images/product-2.png" class="card-img-top card-images" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Abin RX 0301</h5>
+                        <p class="card-text">$10,000</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row mt-5 mx-5">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h4>Category Name</h4>
-            <button class="btn btn-outline-primary btn-sm">See All</button>
-        </div>
-    </div>
-    <div class="row mt-3 mx-5">
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-5 mx-5">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h4>Category Name</h4>
-            <button class="btn btn-outline-primary btn-sm">See All</button>
-        </div>
-    </div>
-    <div class="row mt-3 mx-5">
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$100</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
 
     <!-- Footer -->
-    @include('partials.footer')
+    @include('layout.footer')
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

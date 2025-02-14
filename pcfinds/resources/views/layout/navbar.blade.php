@@ -3,7 +3,7 @@
 
     <div class="container-fluid" style="margin: 0 100px;">
 
-        <a class="navbar-brand mb-2" href="#" style="height: 50px; margin-left: -15px;">
+        <a class="navbar-brand mb-2" href="#" style="height: 50px;">
             <img src="{{ asset('images/PC_FINDS_Logo.png') }}" alt="PC Find Logo">
         </a>
 
@@ -33,30 +33,12 @@
             <ul class="navbar-nav ml-auto" style="margin-left: auto;">
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">Sign-up</a>
+                    <a class="nav-link" href="/">Sign-up</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Sign-in</a>
+                    <a class="nav-link" href="/">Sign-in</a>
                 </li>
-
-                @if (Route::has('login'))
-                    @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Log in</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">Register</a>
-                            </li>
-                        @endif
-                    @endauth
-                @endif
-
             </ul>
 
         </div>
