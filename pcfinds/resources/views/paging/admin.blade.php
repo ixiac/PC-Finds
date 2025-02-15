@@ -4,19 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Admin Panel - PC Finds</title>
+    <title>Admin Control Panel - PC Finds</title>
 </head>
 
 <body>
+    <div class="row">
 
-    @include('admin_header')
-    @include('layouts.sidebar')
+        <!-- Sidebar -->
+        <div class="col-md-4">
+            @include('layouts.admin_sidebar')
+        </div>
 
-    <div class="content">
-        @yield('content')  <!-- Dynamic content goes here -->
+        <div class="col-md-8">
+
+            <!-- Header -->
+            <div class="row">
+                @include('layout.admin_header')
+            </div>
+
+            <!-- Content -->
+            <div class="row">
+
+                <div class="content">
+                    @yield('content')
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="row">
+                @include('layouts.footer')
+            </div>
+
+        </div>
+
     </div>
-
-    @include('layouts.footer')
 
 </body>
 
