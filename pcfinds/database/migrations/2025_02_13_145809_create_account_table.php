@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->text('last_name');
             $table->text('email')->unique();
             $table->char('sex');
-            $table->integer('contact_number')->nullable();
+            $table->text('contact_number')->nullable();
             $table->text('address')->nullable();
             $table->timestamp('date_created')->useCurrent();
             $table->text('image')->nullable();
@@ -28,5 +28,3 @@ return new class extends Migration {
         Schema::dropIfExists('account');
     }
 };
-
-

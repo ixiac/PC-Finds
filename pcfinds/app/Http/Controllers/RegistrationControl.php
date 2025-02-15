@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Account;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 
 class RegistrationControl extends Controller
 {
@@ -37,48 +38,49 @@ class RegistrationControl extends Controller
                 'regex:/\.(com|net|org)$/'
             ],
             'sex' => 'required',
-            'contact_number' => 'required|digits:11',
+            'contact_number' => 'required|digits:11|unique:account,contact_number',
             'address' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             # Username
-            'username.required' => 'The username is required.',
-            'username.unique' => 'This username is already taken.',
-            'username.regex' => 'The username can only contain letters, numbers, _ and -.',
-            'username.min' => 'The username must be at least 4 characters long.',
-            'username.max' => 'The username cannot be more than 20 characters long.',
+            'username.required' => 'Username is required.',
+            'username.unique' => 'Username is taken.',
+            'username.regex' => 'Only letters, numbers, _ and - allowed.',
+            'username.min' => 'Must be at least 4 characters.',
+            'username.max' => 'Cannot exceed 20 characters.',
 
             # Password
-            'password.required' => 'The password is required.',
-            'password.min' => 'The password must be at least 8 characters long.',
-            'password.max' => 'The password cannot be more than 16 characters long.',
-            'password.regex' => 'The password must include at least one lowercase, one uppercase, one number, and one special character (@$!%*?&).',
-            'password.confirmed' => 'The password confirmation does not match.',
+            'password.required' => 'Password is required.',
+            'password.min' => 'Must be at least 8 characters.',
+            'password.max' => 'Cannot exceed 16 characters.',
+            'password.regex' => 'Must include uppercase, lowercase, number, and special character (@$!%*?&).',
+            'password.confirmed' => 'Passwords do not match.',
 
             # First Name & Last Name
-            'first_name.required' => 'The first name is required.',
-            'last_name.required' => 'The last name is required.',
+            'first_name.required' => 'First name is required.',
+            'last_name.required' => 'Last name is required.',
 
             # Email
-            'email.required' => 'The email address is required.',
-            'email.email' => 'Please enter a valid email address.',
-            'email.unique' => 'This email is already registered.',
-            'email.regex' => 'The email must contain "@" and end with ".com" or ".net" or ".org".',
+            'email.required' => 'Email is required.',
+            'email.email' => 'Enter a valid email.',
+            'email.unique' => 'Email is already registered.',
+            'email.regex' => 'Email must contain "@" and end in .com, .net, or .org.',
 
             # Sex
-            'sex.required' => 'Please select a gender.',
+            'sex.required' => 'Select a gender.',
 
             # Contact Number
-            'contact_number.required' => 'The contact number is required.',
-            'contact_number.digits' => 'The contact number must be exactly 11 digits.',
+            'contact_number.required' => 'Contact number is required.',
+            'contact_number.digits' => 'Must be exactly 11 digits.',
+            'contact_number.unique' => 'Contact Number is already used.',
 
             # Address
-            'address.required' => 'The address is required.',
+            'address.required' => 'Address is required.',
 
             # Image Upload
-            'image.image' => 'The uploaded file must be an image.',
-            'image.mimes' => 'Only JPEG, PNG, JPG, and GIF formats are allowed.',
-            'image.max' => 'The image size must not exceed 2MB.',
+            'image.image' => 'File must be an image.',
+            'image.mimes' => 'Only JPEG, PNG, JPG, and GIF allowed.',
+            'image.max' => 'Max size is 2MB.',
         ]);
 
         if ($request->hasFile('image')) {
@@ -105,6 +107,6 @@ class RegistrationControl extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('account_register_route')->with('success', 'Form submitted successfully!');
+        return redirect()->route('account_register_route')->with('success', true);
     }
 }
