@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationControl;
 use App\Http\Controllers\SignInController;
 
-
-
 // Sign Up
 
 # Route for the sign-up form
