@@ -4,15 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationControl;
 use App\Http\Controllers\SignInController;
 
-# Route for the home page
-Route::get('/', function () {
-    return view('welcome');
-});
 
-# Route for the products page
-Route::get('/products_page', function () {
-    return view('products_page');
-});
+
+// Sign Up
 
 # Route for the sign-up form
 Route::get('/sign-up', function () {
@@ -21,6 +15,8 @@ Route::get('/sign-up', function () {
 
 # Route for form sign-up submission
 Route::post('/sign-up', [RegistrationControl::class, 'account_register'])->name('account_register_route');
+
+
 
 // Sign In
 
@@ -31,3 +27,13 @@ Route::get('/sign-in', function () {
 
 # Route for form sign-in submission
 Route::post('/sign-in', [SignInController::class, 'account_sign_in'])->name('account_sign_in_route');
+
+# Route for the home page
+Route::get('/', function () {
+    return view('welcome');
+});
+
+# Route for the products page
+Route::get('/products_page', function () {
+    return view('products_page');
+});
