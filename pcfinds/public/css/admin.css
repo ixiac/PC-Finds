@@ -1,0 +1,19 @@
+/* Custom scrollbar styling */ 
+.content::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.content::-webkit-scrollbar-track {
+    background: transparent; /* Makes track invisible */
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent scrollbar */
+    border-radius: 4px;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease;
+}
+
+.content:hover::-webkit-scrollbar-thumb {
+    opacity: 1; /* Show scrollbar when hovered */
+}

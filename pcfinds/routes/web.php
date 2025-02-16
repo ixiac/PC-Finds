@@ -7,20 +7,36 @@ use App\Http\Controllers\SignInController;
 // Sign Up
 
 # Route for the sign-up form
-Route::get('/form', function () {
-    return view('sign_up');
-});
+Route::get('/sign-up', function () {
+    return view('paging.sign_up');
+})->name('sign-up');
 
 # Route for form sign-up submission
-Route::post('/form', [RegistrationControl::class, 'account_register'])->name('account_register_route');
+Route::post('/sign-up', [RegistrationControl::class, 'account_register'])->name('account_register_route');
 
 
 
-// Sign in
+// Sign In
 
 # Route for the sign-in form
-Route::get('/form-sign-in', function () {
-    return view('sign_in');
-});
+Route::get('/sign-in', function () {
+    return view('paging.sign_in');
+})->name('sign-in');
 
-Route::post('/form-sign-in', [SignInController::class, 'account_sign_in'])->name('account_sign_in_route');
+# Route for form sign-in submission
+Route::post('/sign-in', [SignInController::class, 'account_sign_in'])->name('account_sign_in_route');
+
+# Route for the sign-in form
+Route::get('/admin-control-panel', function () {
+    return view('paging.admin');
+})->name('admin');
+
+#Route for admin dashboard
+Route::get('/admin-dashboard', function () {
+    return view('content.admin_dashboard');
+})->name('admin-dashboard');
+
+#Route for admin manage customer
+Route::get('/admin-manage-customer', function () {
+    return view('content.manage_customer');
+})->name('admin-manage-customer');
