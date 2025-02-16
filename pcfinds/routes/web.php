@@ -29,7 +29,6 @@ Route::get('/sign-in', function () {
 # Route for form sign-in submission
 Route::post('/sign-in', [SignInController::class, 'account_sign_in'])->name('account_sign_in_route');
 
-
 // Admin
 
 
@@ -40,3 +39,13 @@ Route::get('/admin-sign-in', function () {
 
 # Route for admin sign-in submission
 Route::post('/admin-sign-in', [AdminSignInController::class, 'admin_sign_in'])->name('admin_sign_in_route');
+=======
+# Route for the home page
+Route::get('/', function () {
+    return view('welcome');
+});
+
+# Route for the products page
+Route::get('/products_page', function () {
+    return view('products_page');
+});
