@@ -30,8 +30,8 @@
 
             <div class="collapse" id="manageUsersCollapse">
                 <ul class="list-unstyled ps-3 submenu">
-                    <li><a class="nav-link text-light submenu-item" href="">Admin Account</a></li>
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('admin-manage-customer') }}">Customer Account</a>
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('add-admin') }}">Admin Account</a></li>
+                    <li><a class="nav-link text-light submenu-item" href="">Customer Account</a>
                     </li>
                 </ul>
             </div>

@@ -119,7 +119,7 @@
                     <label for="profilePicture" class="form-label" style="color: white; margin: 0; font-size: 14px;">Add a
                         Profile Pic</label>
                     <input type="file" class="form-control pt-1" name="profile_picture" id="profilePicture"
-                        style=" height: 30px; font-size: 12px; color: grey;" accept="image/*">
+                        style="height: 26px; font-size: 12px; color: grey;" accept="image/*">
                 </div>
 
                 <!-- Signup Button -->

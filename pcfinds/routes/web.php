@@ -36,7 +36,7 @@ Route::get('/admin-dashboard', function () {
     return view('content.admin_dashboard');
 })->name('admin-dashboard');
 
-#Route for admin manage customer
-Route::get('/admin-manage-customer', function () {
-    return view('content.manage_customer');
-})->name('admin-manage-customer');
+#Route for add admin
+Route::get('/add-admin', function () {
+    return view('content.add_admin');
+})->name('add-admin');
