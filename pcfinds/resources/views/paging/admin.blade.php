@@ -24,7 +24,7 @@
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-10 d-flex flex-column justify-content-between" style="background-color: #343a40;">
+            <div class=" col-md-10 d-flex flex-column justify-content-between" style="background-color: #343a40;">
 
                 <!-- Header -->
                 <div class="row g-0">
@@ -41,11 +41,11 @@
                 <!-- Footer -->
                 <div class="row g-0">
                     @include('layout.admin_footer')
+                </div>
+
             </div>
 
         </div>
-
-    </div>
 
     </div>
 
