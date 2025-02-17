@@ -46,6 +46,8 @@ Route::get('/add-admin', function () {
     return view('content.add_admin');
 })->name('add-admin');
 
+
+
 # Route for admin sign up form submission
 Route::post('/add-admin', [RegistrationControl::class, 'admin_account_register'])->name('admin_account_register_route');
 
@@ -57,3 +59,13 @@ Route::put('/update-admin/{id}', [AdminTableController::class, 'update_admin_acc
 
 #Route for deleting admin account
 Route::delete('/delete-admin/{id}', [AdminTableController::class, 'delete_admin_account_table'])->name('delete_admin_account_table_route');
+=======
+#Route for admin account
+Route::get('/admin-account', function () {
+    return view('content.admin_account');
+})->name('admin-account');
+
+#Route for customer account
+Route::get('/customer-account', function () {
+    return view('content.customer_account');
+})->name('customer-account');

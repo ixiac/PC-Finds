@@ -1,6 +1,6 @@
 <footer>
 
-    <div class="d-flex flex-row mx-3 mb-2 pt-3 justify-content-between pe-3">
+    <div class="d-flex flex-row mx-3 mb-2 pt-1 justify-content-between pe-3">
 
         <p class="text-center text-light">
             © 2025 PC Finds. All Rights Reserved.
