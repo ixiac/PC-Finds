@@ -50,3 +50,13 @@ Route::get('/admin-account', function () {
 Route::get('/customer-account', function () {
     return view('content.customer_account');
 })->name('customer-account');
+
+#Route for refund product tickets
+Route::get('/refund-product-tickets', function () {
+    return view('content.refund_tickets');
+})->name('refund-product-tickets');
+
+#Route for refund product list
+Route::get('/refund-product-list', function () {
+    return view('content.refund_list');
+})->name('refund-product-list');

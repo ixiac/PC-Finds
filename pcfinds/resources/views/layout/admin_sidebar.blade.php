@@ -30,8 +30,10 @@
 
             <div class="collapse" id="manageUsersCollapse">
                 <ul class="list-unstyled ps-3 submenu">
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('admin-account') }}">Admin Account</a></li>
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('customer-account') }}">Customer Account</a>
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('admin-account') }}">Admin
+                            Account</a></li>
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('customer-account') }}">Customer
+                            Account</a>
                     </li>
                 </ul>
             </div>
@@ -40,9 +42,22 @@
 
         <li class="nav-item">
 
-            <a class="nav-link text-light" href="">
-                <i class="bi bi-person"></i> Profile
+            <a class="nav-link text-light d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                href="#refundCollapse" role="button" aria-expanded="false" aria-controls="refundCollapse">
+                <span><i class="bi bi-cart-x"></i> Refund</span>
+                <i class="bi bi-chevron-down"></i>
             </a>
+
+            <div class="collapse" id="refundCollapse">
+                <ul class="list-unstyled ps-3 submenu">
+                    <li>
+                        <a class="nav-link text-light submenu-item" href="{{ ('refund-product-tickets') }}">Refund Tickets</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-light submenu-item" href="{{ ('refund-product-list') }}">Refund List</a>
+                    </li>
+                </ul>
+            </div>
 
         </li>
 
@@ -59,7 +74,6 @@
 </nav>
 
 <style>
-
     .sidebar a.nav-link:hover {
         border-radius: 10px;
         background-color: rgba(255, 255, 255, 0.1);
@@ -80,7 +94,6 @@
         opacity: 1;
         transform: translateY(0);
     }
-
 </style>
 
 <script>
