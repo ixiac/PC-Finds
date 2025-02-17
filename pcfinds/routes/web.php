@@ -40,3 +40,13 @@ Route::get('/admin-dashboard', function () {
 Route::get('/add-admin', function () {
     return view('content.add_admin');
 })->name('add-admin');
+
+#Route for admin account
+Route::get('/admin-account', function () {
+    return view('content.admin_account');
+})->name('admin-account');
+
+#Route for customer account
+Route::get('/customer-account', function () {
+    return view('content.customer_account');
+})->name('customer-account');

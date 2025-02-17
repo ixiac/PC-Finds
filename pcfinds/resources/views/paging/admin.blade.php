@@ -8,8 +8,12 @@
     <!-- Include Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/admin.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 </head>
 
 <body>
@@ -24,7 +28,7 @@
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-10 d-flex flex-column justify-content-between" style="background-color: #343a40;">
+            <div class=" col-md-10 d-flex flex-column justify-content-between" style="background-color: #343a40;">
 
                 <!-- Header -->
                 <div class="row g-0">
@@ -41,11 +45,11 @@
                 <!-- Footer -->
                 <div class="row g-0">
                     @include('layout.admin_footer')
+                </div>
+
             </div>
 
         </div>
-
-    </div>
 
     </div>
 

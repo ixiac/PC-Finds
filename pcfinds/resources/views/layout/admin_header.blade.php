@@ -3,7 +3,7 @@
     <div class="d-flex flex-row justify-content-between pe-3" style="padding-top: 35px;">
 
         <div>
-            <h3 class="text-light">Admin Control Panel</h3>
+            <h1 class="text-light ms-3">Admin Control Panel</h1>
         </div>
 
         <div class="d-flex flex-row column-gap-5">
