@@ -21,7 +21,7 @@
                         <th>Amount</th>
                         <th>Refund Reason</th>
                         <th>Date of Refund</th>
-                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
 
                 </thead>
