@@ -60,3 +60,28 @@ Route::get('/refund-product-tickets', function () {
 Route::get('/refund-product-list', function () {
     return view('content.refund_list');
 })->name('refund-product-list');
+
+#Route for manage category
+Route::get('/manage-category', function () {
+    return view('content.manage_category');
+})->name('manage-category');
+
+#Route for add category
+Route::get('/add-category', function () {
+    return view('content.add_category');
+})->name('add-category');
+
+#Route for manage product
+Route::get('/manage-product', function () {
+    return view('content.manage_product');
+})->name('manage-product');
+
+#Route for add product
+Route::get('/add-product', function () {
+    return view('content.add_product');
+})->name('add-product');
+
+#Route for logs
+Route::get('/admin-logs', function () {
+    return view('content.admin_logs');
+})->name('admin-logs');
