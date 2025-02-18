@@ -12,7 +12,7 @@
                 style="width: 140px; margin-top: 58px; right: 280px; background-color: #2fa572;">Add New Product</a>
 
             <a href="{{ ('add-product') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
-                style="width: 140px; margin-top: 60px; right: 450px; background-color: #2fa572;">Product Logs</a>
+                style="width: 120px; margin-top: 58px; right: 430px; background-color: #2fa572;">Product Logs</a>
 
             <table id="productTable" class="table table-striped">
 

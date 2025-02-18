@@ -31,14 +31,9 @@
             <div class="collapse" id="manageUsersCollapse">
                 <ul class="list-unstyled ps-3 submenu">
 
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('admin-account') }}">Admin
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('admin-table') }}">Admin
                             Account</a></li>
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('customer-account') }}">Customer
-
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('admin-table') }}">Admin Account</a>
-                    </li>
-
-                            Account</a>
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('customer-table') }}">Customer</a>
                     </li>
                 </ul>
             </div>
@@ -69,25 +64,16 @@
 
         <li class="nav-item">
 
-            <a class="nav-link text-light d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                href="#inventoryCollapse" role="button" aria-expanded="false" aria-controls="inventoryCollapse">
-                <span><i class="bi bi-boxes"></i> Inventory Control</span>
-                <i class="bi bi-chevron-down"></i>
+            <a class="nav-link text-light" href="{{ route('manage-product') }}">
+                <i class="bi bi-boxes"></i> Manage Product
             </a>
-
-            <div class="collapse" id="inventoryCollapse">
-                <ul class="list-unstyled ps-3 submenu">
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('manage-category') }}">Manage Category</a></li>
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('manage-product') }}">Manage Product</a></li>
-                </ul>
-            </div>
 
         </li>
 
         <li class="nav-item">
 
             <a class="nav-link text-light" href="{{ route('admin-logs') }}">
-            <i class="bi bi-list-check"></i> Logs
+                <i class="bi bi-list-check"></i> Logs
             </a>
 
         </li>
