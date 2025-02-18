@@ -3,7 +3,6 @@
 use App\Http\Controllers\AdminTableController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationControl;
-use App\Http\Controllers\SignInController;
 use App\Http\Controllers\AdminSignInController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
@@ -40,7 +39,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 #Middleware for the user role
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('customer.dashboard');
+        return view('content.product_page_default');
     })->name('customer.dashboard');
 
     Route::get('/admin/dashboard', function () {
@@ -87,15 +86,17 @@ Route::get('/getCategoryProducts/{categoryId}', [ProductCategoryController::clas
 Route::get('/product-details-{id}', [ProductDetailsController::class, 'show'])->name('product-details');
 
 
-#Route for product details
-Route::get('/product-details', function () {
-    return view('content.product_details');
-})->name('product-details');
+Route::middleware('auth')->group(function() {
+    // Route for product details
+    Route::get('/product-details', function () {
+        return view('content.product_details');
+    })->name('product-details');
 
-#Route for product details
-Route::get('/product-page', function () {
-    return view('content.product_page_default');
-})->name('product-page');
+    // Route for product page
+    Route::get('/product-page', function () {
+        return view('content.product_page_default');
+    })->name('product-page');
+});
 
 # Route for form sign-in submission
 Route::post('/sign-in', [SignInController::class, 'account_sign_in'])->name('account_sign_in_route');
