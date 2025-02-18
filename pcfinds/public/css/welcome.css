@@ -1,0 +1,40 @@
+.content {
+    padding: 20px;
+    text-align: center;
+    margin: 0 100px;
+}
+
+.content h2,
+.content p,
+.content {
+    text-align: left;
+}
+
+.image-container {
+    margin: 0 140px 0 0;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.phrase {
+    color: #2fa572;
+}
+
+.content-2 {
+    padding: 20px;
+    text-align: center;
+    margin: 0 125px;
+}
+
+.content-2 h2,
+.content-2 p,
+.content-2 ul {
+    text-align: right;
+}
+
+.car-container {
+    margin: 0 0 0 120px;
+}

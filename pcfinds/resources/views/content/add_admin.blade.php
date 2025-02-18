@@ -3,6 +3,10 @@
 @section('content')
 
     <div class="container-fluid">
+        
+        <a href="{{ ('admin-table') }}" class="btn text-light">
+            <i class="bi bi-arrow-left"></i> Go Back
+        </a>
 
         <div class="row px-5">
 
@@ -76,7 +80,7 @@
                         <span class="input-group-text toggle-password" data-target="confirmPassword"
                             style="cursor: pointer; width: 26px; height: 26px; padding: 0 0 0 6px;">
                             <i class="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                bi bi-eye"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    bi bi-eye"
                                 style="font-size: 14px; color: grey;"></i>
                         </span>
                     </div>

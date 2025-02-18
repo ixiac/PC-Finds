@@ -7,23 +7,26 @@
             <h3 class="mb-4" style="color: #2fa572;">Product List</h3>
             <a href="{{ ('add-product') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
                 style="width: 140px; margin-top: 58px; right: 280px; background-color: #2fa572;">Add New Product</a>
-            <a href="{{ ('add-product') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
-                style="width: 140px; margin-top: 58px; right: 450px; background-color: #2fa572;">Product Logs</a>
+
+            <a href="{{ ('admin-product-logs') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
+                style="width: 120px; margin-top: 58px; right: 430px; background-color: #2fa572;">Product Logs</a>
 
             <table id="productTable" class="table table-striped">
                 <thead class="table-dark">
                     <tr>
                         <th>Product ID</th>
+                        <th class="p-0"></th>
                         <th>Product Name</th>
                         <th>Category</th>
                         <th>Retail</th>
                         <th>Price</th>
                         <th>Stock</th>
-                        <th>Date Added</th>
+                        <th>Date Created</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ($products as $product)
                         <tr>
                             <td>{{ $product->product_id }}</td>
@@ -50,16 +53,9 @@
         </div>
     </div>
 
-    <!-- Include jQuery (if not already included) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Include SweetAlert2 from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Include DataTables and Bootstrap JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 
     <script>
         $(document).ready(function () {

@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Account extends Model
+class Account extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $table = 'account';
 
@@ -25,6 +26,10 @@ class Account extends Model
         'image'
     ];
 
-    public $timestamps = false; // Because we are using 'date_created'
-}
+    public $timestamps = false; // Since you're using 'date_created'
 
+    protected $hidden = [
+        'password', 
+        'remember_token', // Hide sensitive data
+    ];
+}

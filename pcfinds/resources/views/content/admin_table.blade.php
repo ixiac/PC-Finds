@@ -17,14 +17,14 @@
                 <thead class="table-dark">
 
                     <tr>
-                        <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Sex</th>
-                        <th>Contact Number</th>
-                        <th>Address</th>
-                        <th>Actions</th>
+                        <th class="align-middle">Username</th>
+                        <th class="align-middle">First Name</th>
+                        <th class="align-middle">Last Name</th>
+                        <th class="align-middle">Email</th>
+                        <th class="align-middle">Sex</th>
+                        <th class="align-middle" style="width: 150px;">Contact Number</th>
+                        <th class="align-middle">Address</th>
+                        <th class="align-middle">Actions</th>
                     </tr>
 
                 </thead>
@@ -33,17 +33,28 @@
 
                     @foreach($accounts as $account)
                         <tr>
-                            <td>{{ $account->username }}</td>
-                            <td>{{ $account->first_name }}</td>
-                            <td>{{ $account->last_name }}</td>
-                            <td>{{ $account->email }}</td>
-                            <td>{{ $account->sex }}</td>
-                            <td>{{ $account->contact_number }}</td>
-                            <td>{{ $account->address }}</td>
-                            <td>
+                            <td class="align-middle">{{ $account->username }}</td>
+                            <td class="align-middle">{{ $account->first_name }}</td>
+                            <td class="align-middle">{{ $account->last_name }}</td>
+                            <td class="align-middle" style="width: 100px;">
+                                <div class="overflow-x-auto text-nowrap scroll-cell" style="width: 120px;">
+                                    {{ $account->email }}
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                {{ $account->sex == 'M' ? 'Male' : 'Female' }}
+                            </td>
+                            <td class="align-middle" style="width: 100px;">{{ $account->contact_number }}</td>
+                            <td class="align-middle" style="width: 100px;">
+                                <div class="overflow-x-auto text-nowrap scroll-cell" style="max-width: 120px;">
+                                    {{ $account->address }}
+
+                                </div>
+                            </td>
+                            <td class="align-middle text-center" style="width: 110px;">
                                 <!-- Edit Row -->
                                 <a href="{{ route('edit_admin_account_table_route', $account->id) }}"
-                                    class="btn btn-primary btn-sm">Edit</a>
+                                    class="btn btn-success btn-sm">Edit</a>
 
                                 <!-- Delete Row -->
                                 <form action="{{ route('delete_admin_account_table_route', $account->id) }}" method="POST"
@@ -67,11 +78,7 @@
     <!-- Include SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Include DataTables and Bootstrap JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+
 
     <script>
         $(document).ready(function () {
