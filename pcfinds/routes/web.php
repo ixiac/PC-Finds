@@ -105,6 +105,11 @@ Route::get('/admin-logs', function () {
     return view('content.admin_logs');
 })->name('admin-logs');
 
+#Route for account logs
+Route::get('/admin-product-logs', function () {
+    return view('content.product_logs');
+})->name('admin-product-logs');
+
 #Route for order logs
 Route::get('/order-logs', function () {
     return view('content.order_logs');

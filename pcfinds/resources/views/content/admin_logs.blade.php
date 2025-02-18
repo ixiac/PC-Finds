@@ -13,13 +13,9 @@
                 <thead class="table-dark">
 
                     <tr>
-                        <th>Product ID</th>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Retail</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Date Created</th>
+                        <th>Username</th>
+                        <th>Activity</th>
+                        <th>Date and Time</th>
                     </tr>
 
                 </thead>
@@ -27,13 +23,25 @@
                 <tbody>
 
                     <tr>
-                        <td>R12345</td>
-                        <td>Ryzen 5</td>
-                        <td>CPU</td>
-                        <td>$90.00</td>
-                        <td>$100.00</td>
-                        <td>200</td>
-                        <td>2025-02-15</td>
+                        <td>Admin-Alvin</td>
+                        <td>
+                            <span class="badge rounded-pill"
+                                style="background-color:rgba(22, 142, 58, 0.65); border: solid 1px green;">
+                                Logged In
+                            </span>
+                        </td>
+                        <td>2025-3-15 10:00:00</td>
+                    </tr>
+
+                    <tr>
+                        <td>Admin-Alvin</td>
+                        <td>
+                            <span class="badge rounded-pill"
+                                style="background-color:rgba(142, 98, 22, 0.65); border: solid 1px orange;">
+                                Signed Out
+                            </span>
+                        </td>
+                        <td>2025-3-15 10:00:00</td>
                     </tr>
 
                 </tbody>

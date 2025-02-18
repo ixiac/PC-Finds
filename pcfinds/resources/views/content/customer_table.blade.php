@@ -9,27 +9,38 @@
             <table id="customerTable" class="table table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Sex</th>
-                        <th>Contact Number</th>
-                        <th>Address</th>
-                        <th>Actions</th>
+                        <th class="align-middle">Username</th>
+                        <th class="align-middle">First Name</th>
+                        <th class="align-middle">Last Name</th>
+                        <th class="align-middle">Email</th>
+                        <th class="align-middle">Sex</th>
+                        <th class="align-middle" style="width: 150px;">Contact Number</th>
+                        <th class="align-middle">Address</th>
+                        <th class="align-middle">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($customer_accounts as $customer_account)
                         <tr>
-                            <td>{{ $customer_account->username }}</td>
-                            <td>{{ $customer_account->first_name }}</td>
-                            <td>{{ $customer_account->last_name }}</td>
-                            <td>{{ $customer_account->email }}</td>
-                            <td>{{ $customer_account->sex }}</td>
-                            <td>{{ $customer_account->contact_number }}</td>
-                            <td>{{ $customer_account->address }}</td>
+                            <td class="align-middle">{{ $customer_account->username }}</td>
+                            <td class="align-middle">{{ $customer_account->first_name }}</td>
+                            <td class="align-middle">{{ $customer_account->last_name }}</td>
+                            <td class="align-middle" style="width: 100px;">
+                                <div class="overflow-x-auto text-nowrap scroll-cell" style="width: 120px;">
+                                    {{ $customer_account->email }}
+                                </div>
+                            </td>
                             <td>
+                                {{ $customer_account->sex == 'M' ? 'Male' : 'Female' }}
+                            </td>
+                            <td class="align-middle" style="width: 100px;">{{ $customer_account->contact_number }}</td>
+                            <td class="align-middle" style="width: 100px;">
+                                <div class="overflow-x-auto text-nowrap scroll-cell" style="max-width: 120px;">
+                                    {{ $customer_account->address }}
+
+                                </div>
+                            </td>
+                            <td class="align-middle text-center">
                                 <div class="d-flex gap-2">
                                     <!-- Edit Row -->
                                     <a href="{{ route('edit_customer_account_table_route', $customer_account->id) }}"
