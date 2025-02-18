@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PC FIND</title>
+<link rel="icon" href="images/PC_FINDS_Icon.png" type="image/png">
 
 <!-- Styles -->
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
