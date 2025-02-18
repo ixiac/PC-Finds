@@ -12,7 +12,7 @@
                     <!-- Total User -->
                     <div class="card-body">
 
-                        <h1 class="card-title" style="color: #343A40;">Total User</h1>
+                        <h2 class="card-title" style="color: #343A40;">Total User</h2>
 
                         <h3 class="card-subtitle mb-2" style="color: #343A40;">
                             <i class="bi bi-people" style="color: #2FA572; font-size: 32px;"></i> 100
@@ -42,11 +42,11 @@
 
                         <div class="d-flex flex-column gap-3">
 
-                            <h1 class="card-title mb-2" style="color: #343A40;">Total Revenue</h1>
+                            <h2 class="card-title mb-2" style="color: #343A40;">Total Revenue</h2>
 
-                            <div class="online ps-1 d-flex flex-row align-items-center column-gap-2" style="height: 20px">
-                                <i class="bi bi-cash-coin" style="color: #2FA572; font-size: 32px;"></i>
-                                <h2 class="card-subtitle mb-0" style="font-size: 32px; color: #343A40;"> P 100,000</h2>
+                            <div class="online ps-1 d-flex flex-row align-items-center column-gap-2" style="height: 0">
+                                <i class="bi bi-cash-coin" style="color: #2FA572; font-size: 28px;"></i>
+                                <h3 class="card-subtitle mb-0" style="color: #343A40;"> P 100,000</h3>
                             </div>
 
                         </div>
@@ -70,7 +70,7 @@
                     <div class="card">
 
                         <div class="card-body">
-                            <h4 class="card-title ps-5">Top 10 Selling Products</h4>
+                            <h2 class="card-title ps-5" style="color: #343A40;">Top 10 Selling Products</h2>
                             <div style="height: 407px;">
                                 <canvas id="productSalesChart"></canvas>
                             </div>
@@ -91,75 +91,75 @@
                 <!-- Category Percentage -->
                 <div class="card-body">
 
-                    <h4 class="mb-4">Category Sales Progress</h4>
+                    <h2 class="mb-4" style="color: #343A40;">Category Sales Progress</h2>
 
                     <div class="mb-3">
                         <label class="form-label">CPU (80%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%;">80%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%; background-color: #2fa572;">80%</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Motherboard (65%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 65%;">65%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 65%; background-color: #2fa572;">65%</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">RAM (90%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 90%;">90%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 90%; background-color: #2fa572;">90%</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Keyboard (50%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-info text-dark" role="progressbar" style="width: 50%;">50%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 50%; background-color: #2fa572;">50%</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Mouse (70%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 70%;">70%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 70%; background-color: #2fa572;">70%</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Monitor (60%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-dark" role="progressbar" style="width: 60%;">60%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 60%; background-color: #2fa572;">60%</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Power Supply (75%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 75%;">75%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 75%; background-color: #2fa572;">75%</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Graphics Card (85%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 85%;">85%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 85%; background-color: #2fa572;">85%</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Storage (SSD/HDD) (95%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 95%;">95%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 95%; background-color: #2fa572;">95%</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Cooling System (40%)</label>
                         <div class="progress">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 40%;">40%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%; background-color: #2fa572;">40%</div>
                         </div>
                     </div>
 
