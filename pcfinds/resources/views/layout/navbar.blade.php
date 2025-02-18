@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark vw-100">
 
     <div class="container-fluid" style="margin: 0 100px;">
 
@@ -25,7 +25,7 @@
                 <li class="nav-item <?php if ($active == "products") {
                     echo "active";
                 } ?>">
-                    <a class="nav-link" href="{{ url('/products_page') }}">Products</a>
+                    <a class="nav-link" href="{{ ('product-page') }}">Products</a>
                 </li>
 
             </ul>
@@ -33,11 +33,11 @@
             <ul class="navbar-nav ml-auto" style="margin-left: auto;">
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Sign-up</a>
+                    <a class="nav-link" href="{{ ('/sign-up')}}">Sign-up</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Sign-in</a>
+                    <a class="nav-link" href="{{ ('/sign-in')}}">Sign-in</a>
                 </li>
             </ul>
 
