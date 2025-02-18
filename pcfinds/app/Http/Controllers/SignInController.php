@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Account;
@@ -20,8 +21,8 @@ class SignInController extends Controller
 
         // Check password
         if ($user && Hash::check($request->password, $user->password)) {
-            session(['user' => $user->id]); // Store user session
-            return back()->with('success', 'Login successful!');
+            session(['user' => $user->id]);
+            return redirect()->route('new_dashboard');
         }
 
         // Return with error and username

@@ -12,27 +12,29 @@
 <body>
     <div class="container">
 
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('admin_sign_in_route') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <div class="row">
+            <div class="row postion-relative">
 
                 <div class="col-md-12 pt-5 position-absolute top-50 start-50 translate-middle rounded-3 shadow-sm border"
                     style="background-color: #343a40; padding: 75px; width: 500px;">
 
                     <p class="d-flex justify-content-center fw-bold"
-                        style="color: #2FA572; font-size: 32px; margin: 0;">Sign In</p>
+                        style="color: #2FA572; font-size: 32px; margin: 0; ">Admin Control Panel</p>
 
                     <!-- Username Field -->
                     <div class="my-2">
-                        <label for="username" class="form-label" style="color: white; margin: 0; font-size: 14px;">Username</label>
+                        <label for="username" class="form-label"
+                            style="color: white; margin: 0; font-size: 14px;">Username</label>
                         <input type="text" class="d-inline-block form-control" id="username" name="username"
-                            style="height: 26px; font-size: 12px;" required>
+                            style="height: 26px; font-size: 12px;" value="{{ old('username') }}" required>
                     </div>
 
                     <!-- Password Field -->
                     <div class="mb-2 position-relative">
-                        <label for="password" class="form-label" style="color: white; margin: 0; font-size: 14px;">Password</label>
+                        <label for="password" class="form-label"
+                            style="color: white; margin: 0; font-size: 14px;">Password</label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="password"
                                 style="height: 26px; font-size: 12px;" name="password" required>
@@ -43,15 +45,12 @@
                         </div>
                     </div>
 
-                    <!-- Sign In Button -->
+                    <!-- Signup Button -->
                     <div class="d-flex justify-content-center" style="margin-top: 40px;">
                         <button type="submit" class="btn btn-primary border-0 pt-1"
                             style="width: 160px; background-color: #2FA572; color: white; font-size: 16px;">Sign
                             In</button>
                     </div>
-
-                    <p class="mt-3" style="color: white; font-size: 12px;">Don't have an account? <a
-                            href="{{ route('sign-up') }}" style="color: #2FA572;">Sign Up</a></p>
 
                 </div>
 
@@ -64,20 +63,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     @if(session('error'))
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 Swal.fire({
                     title: "Error",
-                    text: "{{ session('error') }}",
+                    text: "Invalid username or password.",
                     icon: "error",
                     showConfirmButton: false,
                     allowOutsideClick: false,
                     timer: 1500
+                }).then(() => {
+                    window.location.href = "{{ route('admin-sign-in') }}";
                 });
             });
         </script>
     @endif
+
 
     <script>
         document.querySelectorAll(".toggle-password").forEach(function (element) {
