@@ -37,6 +37,11 @@ Route::get('/admin-dashboard', function () {
     return view('content.admin_dashboard');
 })->name('admin-dashboard');
 
+
+// Manage Account
+
+#Admin Accounts
+
 # Route for admin table
 Route::get('/admin-table', [AdminTableController::class, 'admin_account_table'])
     ->name('admin-table');
@@ -45,8 +50,6 @@ Route::get('/admin-table', [AdminTableController::class, 'admin_account_table'])
 Route::get('/add-admin', function () {
     return view('content.add_admin');
 })->name('add-admin');
-
-
 
 # Route for admin sign up form submission
 Route::post('/add-admin', [RegistrationControl::class, 'admin_account_register'])->name('admin_account_register_route');
@@ -59,13 +62,17 @@ Route::put('/update-admin/{id}', [AdminTableController::class, 'update_admin_acc
 
 #Route for deleting admin account
 Route::delete('/delete-admin/{id}', [AdminTableController::class, 'delete_admin_account_table'])->name('delete_admin_account_table_route');
-=======
-#Route for admin account
-Route::get('/admin-account', function () {
-    return view('content.admin_account');
-})->name('admin-account');
 
-#Route for customer account
-Route::get('/customer-account', function () {
-    return view('content.customer_account');
-})->name('customer-account');
+#Customer Accounts
+
+#Route for customer table
+Route::get('/customer-table', [AdminTableController::class, 'customer_account_table'])->name('customer-table');
+
+#Route for editing customer account
+Route::get('/edit-customer/{id}', [AdminTableController::class, 'edit_customer_account_table'])->name('edit_customer_account_table_route');
+
+# Route for updating customer account
+Route::put('/update-customer/{id}', [AdminTableController::class, 'update_customer_account_table'])->name('update_customer_account_table_route');
+
+#Route for deleting customer account
+Route::delete('/delete-customer/{id}', [AdminTableController::class, 'delete_customer_account_table'])->name('delete_customer_account_table_route');

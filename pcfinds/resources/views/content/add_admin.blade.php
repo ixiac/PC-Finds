@@ -76,7 +76,7 @@
                         <span class="input-group-text toggle-password" data-target="confirmPassword"
                             style="cursor: pointer; width: 26px; height: 26px; padding: 0 0 0 6px;">
                             <i class="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    bi bi-eye"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                bi bi-eye"
                                 style="font-size: 14px; color: grey;"></i>
                         </span>
                     </div>
@@ -110,7 +110,7 @@
                     <div class="col-md-6">
                         <label for="sex" class="form-label text-white" style="margin: 0; font-size: 14px;">Sex</label>
                         <select class="form-select pt-1" id="sex" name="sex" style="height: 26px; font-size: 12px;"
-                            value="{{ old('sex') }}" required>
+                            required>
                             <option disabled selected hidden>Select Sex</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
@@ -175,7 +175,7 @@
                     allowOutsideClick: false,
                     timer: 2000
                 }).then(() => {
-                    window.location.href = "{{ route('add-admin') }}";
+                    window.location.href = "{{ route('admin-table') }}";
                 });
             });
         </script>

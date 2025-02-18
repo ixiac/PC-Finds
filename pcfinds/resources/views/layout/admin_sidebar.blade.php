@@ -30,8 +30,10 @@
 
             <div class="collapse" id="manageUsersCollapse">
                 <ul class="list-unstyled ps-3 submenu">
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('admin-account') }}">Admin Account</a></li>
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('customer-account') }}">Customer Account</a>
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('admin-table') }}">Admin Account</a>
+                    </li>
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('customer-table') }}">Customer
+                            Account</a>
                     </li>
                 </ul>
             </div>
@@ -59,7 +61,6 @@
 </nav>
 
 <style>
-
     .sidebar a.nav-link:hover {
         border-radius: 10px;
         background-color: rgba(255, 255, 255, 0.1);
@@ -80,7 +81,6 @@
         opacity: 1;
         transform: translateY(0);
     }
-
 </style>
 
 <script>

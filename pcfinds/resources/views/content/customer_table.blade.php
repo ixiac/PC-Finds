@@ -3,19 +3,11 @@
 @section('content')
 
     <div class="container">
-
         <div class="row">
+            <h3 class="mb-4" style="color: #2fa572;">Customer Account Management</h3>
 
-            <h3 class="mb-4" style="color: #2fa572;">Admin Account Management</h3>
-
-            <a href="{{ route('admin_account_register_route') }}"
-                class="btn btn-primary btn-sm add-btn position-absolute border-0"
-                style="width: 120px; margin-top: 58px; right: 280px; background-color: #2fa572;">Create Admin</a>
-
-            <table id="adminTable" class="table table-striped">
-
+            <table id="customerTable" class="table table-striped">
                 <thead class="table-dark">
-
                     <tr>
                         <th>Username</th>
                         <th>First Name</th>
@@ -26,48 +18,44 @@
                         <th>Address</th>
                         <th>Actions</th>
                     </tr>
-
                 </thead>
-
                 <tbody>
-
-                    @foreach($accounts as $account)
+                    @foreach($customer_accounts as $customer_account)
                         <tr>
-                            <td>{{ $account->username }}</td>
-                            <td>{{ $account->first_name }}</td>
-                            <td>{{ $account->last_name }}</td>
-                            <td>{{ $account->email }}</td>
-                            <td>{{ $account->sex }}</td>
-                            <td>{{ $account->contact_number }}</td>
-                            <td>{{ $account->address }}</td>
+                            <td>{{ $customer_account->username }}</td>
+                            <td>{{ $customer_account->first_name }}</td>
+                            <td>{{ $customer_account->last_name }}</td>
+                            <td>{{ $customer_account->email }}</td>
+                            <td>{{ $customer_account->sex }}</td>
+                            <td>{{ $customer_account->contact_number }}</td>
+                            <td>{{ $customer_account->address }}</td>
                             <td>
-                                <!-- Edit Row -->
-                                <a href="{{ route('edit_admin_account_table_route', $account->id) }}"
-                                    class="btn btn-primary btn-sm">Edit</a>
+                                <div class="d-flex gap-2">
+                                    <!-- Edit Row -->
+                                    <a href="{{ route('edit_customer_account_table_route', $customer_account->id) }}"
+                                        class="btn btn-primary btn-sm">Edit</a>
 
-                                <!-- Delete Row -->
-                                <form action="{{ route('delete_admin_account_table_route', $account->id) }}" method="POST"
-                                    class="d-inline-block delete-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                    <!-- Delete Row -->
+                                    <form action="{{ route('delete_customer_account_table_route', $customer_account->id) }}"
+                                        method="POST" class="delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
-
                 </tbody>
-
             </table>
 
         </div>
-
     </div>
 
     <!-- Include SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Include DataTables and Bootstrap JavaScript -->
+    <!-- Include jQuery (if not already loaded), DataTables, and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
@@ -75,17 +63,18 @@
 
     <script>
         $(document).ready(function () {
-            $('#adminTable').DataTable({
-                "paging": true,
-                "searching": true,
-                "ordering": true,
-                "info": true
+            // Initialize DataTable on the customerTable
+            $('#customerTable').DataTable({
+                paging: true,
+                searching: true,
+                ordering: true,
+                info: true
             });
 
             // SweetAlert delete confirmation for delete forms.
             $('.delete-form').on('submit', function (e) {
-                e.preventDefault(); // Prevent the form from submitting immediately.
-                var form = this;
+                e.preventDefault(); // Prevent immediate form submission.
+                const form = this;
                 Swal.fire({
                     title: 'Are you sure you want to delete this account?',
                     text: "This action cannot be undone.",
