@@ -30,7 +30,7 @@
 
             <div class="collapse" id="manageUsersCollapse">
                 <ul class="list-unstyled ps-3 submenu">
-
+                
                     <li>
                         <a class="nav-link text-light submenu-item" href="{{ route('admin-table') }}">Admin Account</a>
                     </li>
@@ -65,7 +65,7 @@
             </div>
 
         </li>
-
+        
         <li class="nav-item">
 
             <a class="nav-link text-light" href="{{ route('manage-product') }}">
@@ -78,6 +78,7 @@
 
             <a class="nav-link text-light" href="{{ route('admin-logs') }}">
                 <i class="bi bi-list-check"></i> Logs
+
             </a>
 
         </li>
