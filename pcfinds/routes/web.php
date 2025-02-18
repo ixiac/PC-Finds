@@ -74,12 +74,6 @@ Route::get('/edit-customer/{id}', [AdminTableController::class, 'edit_customer_a
 # Route for updating customer account
 Route::put('/update-customer/{id}', [AdminTableController::class, 'update_customer_account_table'])->name('update_customer_account_table_route');
 
-
-#Route for customer account
-Route::get('/customer-account', function () {
-    return view('content.customer_account');
-})->name('customer-account');
-
 #Route for refund product tickets
 Route::get('/refund-product-tickets', function () {
     return view('content.refund_tickets');
