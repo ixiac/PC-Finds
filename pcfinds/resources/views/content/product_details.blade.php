@@ -14,7 +14,7 @@
             <!-- Product Image -->
             <div class="col-md-6">
                 <div class="container-fluid" style="border: 1px solid #2fa572; border-radius: 10px; padding: 10px; width: 500px;  height: 400px;">
-                    <img src="{{ asset('images/r5 3600x.jpg') }}" class="img-fluid"
+                    <img src="{{ asset('images/' . $product->image) }}" class="img-fluid"
                         style="width: 480px; height: 380px;" alt="{{ $product->product_name }}">
                 </div>
             </div>
@@ -23,8 +23,9 @@
             <div class="col-md-6">
                 <h1 class="mt-5">{{ $product->product_name }}</h1>
                 <h2 class="text-success mt-3">₱{{ number_format($product->selling_price, 2) }}</h2>
+                <p class="mt-3">{{ $product->description }}</p>
 
-                <button class="btn btn-lg add-to-cart" style="background-color: #2fa572; color: white; margin-top: 100px;" data-id="{{ $product->product_id }}">Add to
+                <button class="btn btn-lg add-to-cart mt-3" style="background-color: #2fa572; color: white" data-id="{{ $product->product_id }}">Add to
                     Cart</button>
             </div>
         </div>
