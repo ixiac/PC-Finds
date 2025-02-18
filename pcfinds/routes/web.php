@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationControl;
-use App\Http\Controllers\SignInController;
 use App\Http\Controllers\AdminSignInController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
@@ -65,7 +64,7 @@ Route::get('/admin-sign-in', function () {
 
 # Route for admin sign-in submission
 Route::post('/admin-sign-in', [AdminSignInController::class, 'admin_sign_in'])->name('admin_sign_in_route');
-=======
+
 # Route for the home page
 Route::get('/', function () {
     return view('welcome');
