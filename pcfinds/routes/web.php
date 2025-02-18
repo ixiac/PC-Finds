@@ -41,7 +41,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 #Middleware for the user role
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('customer.dashboard');
+        return view('content.product_page_default');
     })->name('customer.dashboard');
 
     Route::get('/admin/dashboard', function () {
@@ -88,13 +88,15 @@ Route::get('/getCategoryProducts/{categoryId}', [ProductCategoryController::clas
 Route::get('/product-details-{id}', [ProductDetailsController::class, 'show'])->name('product-details');
 
 
-#Route for product details
-Route::get('/product-details', function () {
-    return view('content.product_details');
-})->name('product-details');
+Route::middleware('auth')->group(function() {
+    // Route for product details
+    Route::get('/product-details', function () {
+        return view('content.product_details');
+    })->name('product-details');
 
-#Route for product details
-Route::get('/product-page', function () {
-    return view('content.product_page_default');
-})->name('product-page');
+    // Route for product page
+    Route::get('/product-page', function () {
+        return view('content.product_page_default');
+    })->name('product-page');
+});
 

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Account;
-
 
 class AuthController extends Controller
 {
@@ -17,14 +17,15 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        // Try to find the user by username
+        // Find the user by username
         $user = Account::where('username', $request->input('username'))->first();
 
-        // If the user exists and the password is correct
-        if ($user && Auth::attempt(['username' => $user->username, 'password' => $request->input('password')])) {
+        // Check if user exists and password is correct
+        if ($user && Hash::check($request->input('password'), $user->password)) {
+            Auth::login($user);
             $request->session()->regenerate();
 
-            // Redirect based on role
+            // Redirect based on user role
             $role = Auth::user()->role;
             if ($role == 2) {
                 return redirect()->route('admin.dashboard');
@@ -35,7 +36,7 @@ class AuthController extends Controller
             return redirect()->route('customer.dashboard');
         }
 
-        // If authentication fails, redirect back with an error
+        // If authentication fails, redirect back with error message
         return back()->with('error', 'Invalid username or password.');
     }
 
@@ -45,6 +46,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('/');
+        return redirect('/');
     }
 }
