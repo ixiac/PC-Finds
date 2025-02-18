@@ -8,7 +8,7 @@
                 style="max-width: 85% !important;">
         </a>
 
-    </div>3
+    </div>
 
     <ul class="nav flex-column row-gap-3">
 
