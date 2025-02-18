@@ -8,7 +8,7 @@
                 style="max-width: 85% !important;">
         </a>
 
-    </div>
+    </div>3
 
     <ul class="nav flex-column row-gap-3">
 
@@ -51,7 +51,8 @@
             <div class="collapse" id="refundCollapse">
                 <ul class="list-unstyled ps-3 submenu">
                     <li>
-                        <a class="nav-link text-light submenu-item" href="{{ ('refund-product-tickets') }}">Refund Tickets</a>
+                        <a class="nav-link text-light submenu-item" href="{{ ('refund-product-tickets') }}">Refund
+                            Tickets</a>
                     </li>
                     <li>
                         <a class="nav-link text-light submenu-item" href="{{ ('refund-product-list') }}">Refund List</a>
@@ -63,8 +64,25 @@
 
         <li class="nav-item">
 
-            <a class="nav-link text-light" href="   ">
-                <i class="bi bi-box-arrow-right"></i> Logout
+            <a class="nav-link text-light d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                href="#inventoryCollapse" role="button" aria-expanded="false" aria-controls="inventoryCollapse">
+                <span><i class="bi bi-boxes"></i> Inventory Control</span>
+                <i class="bi bi-chevron-down"></i>
+            </a>
+
+            <div class="collapse" id="inventoryCollapse">
+                <ul class="list-unstyled ps-3 submenu">
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('manage-category') }}">Manage Category</a></li>
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('manage-product') }}">Manage Product</a></li>
+                </ul>
+            </div>
+
+        </li>
+
+        <li class="nav-item">
+
+            <a class="nav-link text-light" href="{{ route('admin-logs') }}">
+            <i class="bi bi-list-check"></i> Logs
             </a>
 
         </li>

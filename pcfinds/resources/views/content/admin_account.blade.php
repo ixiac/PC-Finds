@@ -8,7 +8,7 @@
 
             <h3 class="mb-4" style="color: #2fa572;">Admin Account Management</h3>
 
-            <a href="" class="btn btn-primary btn-sm add-btn position-absolute border-0"
+            <a href="{{ ('add-admin') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
                 style="width: 120px; margin-top: 58px; right: 280px; background-color: #2fa572;">Create Admin</a>
 
             <table id="adminTable" class="table table-striped">
