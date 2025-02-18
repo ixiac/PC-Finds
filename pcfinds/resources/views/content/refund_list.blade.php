@@ -14,12 +14,9 @@
 
                     <tr>
                         <th>Refund ID</th>
-                        <th>Product Name</th>
-                        <th>Category Name</th>
                         <th>Customer Name</th>
-                        <th>Quantity</th>
-                        <th>Amount</th>
-                        <th>Refund Reason</th>
+                        <th>Product Name</th>
+                        <th>Details</th>
                         <th>Date of Refund</th>
                         <th>Status</th>
                     </tr>
@@ -30,24 +27,18 @@
 
                     <tr>
                         <td>R12345</td>
-                        <td>Ryzen i5 13th Gen</td>
-                        <td>CPU</td>
                         <td>John Doe</td>
-                        <td>$50.00</td>
-                        <td>1</td>
-                        <td>Product Defect</td>
+                        <td>Ryzen i5 13th Gen</td>
+                        <td><a href="">View</a></td>
                         <td>2025-02-15</td>
                         <td><span class="badge rounded-pill" style="background-color:rgba(22, 142, 58, 0.65); border: solid 1px green;">Approved</span></td>
                     </tr>
 
                     <tr>
                         <td>R12346</td>
-                        <td>AMD RX1310</td>
-                        <td>GPU</td>
                         <td>Jane Smith</td>
-                        <td>$30.00</td>
-                        <td>1</td>
-                        <td>Incorrect Item</td>
+                        <td>AMD RX1310</td>
+                        <td><a href="">View</a></td>
                         <td>2025-02-16</td>
                         <td><span class="badge rounded-pill" style="background-color:rgba(22, 142, 58, 0.65); border: solid 1px green;">Approved</span></td>
                     </tr>

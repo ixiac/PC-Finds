@@ -41,9 +41,9 @@
                         <td>$90.00</td>
                         <td>$100.00</td>
                         <td>200</td>
-                        <td>
+                        <td class="pe-4">
                             <img src="{{ asset('img/default_avatar.jpg') }}" alt="pic"
-                                style="max-width: 50px; max-height: 50px; border-radius: 50px;">
+                                style="max-height: 50px; border-radius: 50px;">
                         </td>
                         <td>2025-02-15</td>
                         <td>

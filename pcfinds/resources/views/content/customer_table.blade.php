@@ -33,7 +33,7 @@
                                 <div class="d-flex gap-2">
                                     <!-- Edit Row -->
                                     <a href="{{ route('edit_customer_account_table_route', $customer_account->id) }}"
-                                        class="btn btn-primary btn-sm">Edit</a>
+                                        class="btn btn-success btn-sm">Edit</a>
 
                                     <!-- Delete Row -->
                                     <form action="{{ route('delete_customer_account_table_route', $customer_account->id) }}"
@@ -51,15 +51,6 @@
 
         </div>
     </div>
-
-    <!-- Include SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Include jQuery (if not already loaded), DataTables, and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 
     <script>
         $(document).ready(function () {

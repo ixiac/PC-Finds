@@ -100,10 +100,20 @@ Route::get('/add-product', function () {
     return view('content.add_product');
 })->name('add-product');
 
-#Route for logs
+#Route for account logs
 Route::get('/admin-logs', function () {
     return view('content.admin_logs');
 })->name('admin-logs');
+
+#Route for order logs
+Route::get('/order-logs', function () {
+    return view('content.order_logs');
+})->name('order-logs');
+
+#Route for reports
+Route::get('/admin-report', function () {
+    return view('content.report');
+})->name('admin-report');
 
 #Route for deleting customer account
 Route::delete('/delete-customer/{id}', [AdminTableController::class, 'delete_customer_account_table'])->name('delete_customer_account_table_route');

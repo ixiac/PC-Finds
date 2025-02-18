@@ -1,21 +1,26 @@
-/* Custom scrollbar styling */ 
-.content::-webkit-scrollbar {
+.content::-webkit-scrollbar,
+.scroll-cell::-webkit-scrollbar {
     width: 8px;
+    height: 5px;
 }
 
-.content::-webkit-scrollbar-track {
+.content::-webkit-scrollbar-track,
+.scroll-cell::-webkit-scrollbar-track  {
     background: transparent;
 }
 
-.content::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.5);
+.content::-webkit-scrollbar-thumb,
+.scroll-cell::-webkit-scrollbar-thumb {
+    background: transparent;
     border-radius: 4px;
     opacity: 0; 
     transition: opacity 0.3s ease;
 }
 
-.content:hover::-webkit-scrollbar-thumb {
+.content:hover::-webkit-scrollbar-thumb,
+.scroll-cell:hover::-webkit-scrollbar-thumb {
     opacity: 1;
+    background-color: #343a401a;
 }
 
 thead th {

@@ -78,6 +78,22 @@
 
         </li>
 
+        <li class="nav-item">
+
+            <a class="nav-link text-light" href="{{ route('order-logs') }}">
+                <i class="bi bi-receipt"></i> Orders
+            </a>
+
+        </li>
+
+        <li class="nav-item">
+
+            <a class="nav-link text-light" href="{{ route('admin-report') }}">
+                <i class="bi bi-clipboard-data"></i> Reports
+            </a>
+
+        </li>
+
     </ul>
 
 </nav>

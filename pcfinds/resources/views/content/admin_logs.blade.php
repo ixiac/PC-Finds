@@ -6,7 +6,7 @@
 
         <div class="row">
 
-            <h3 class="mb-4" style="color: #2fa572;">Logs</h3>
+            <h3 class="mb-4" style="color: #2fa572;">Account Logs</h3>
 
             <table id="logsTable" class="table table-striped">
 
@@ -20,7 +20,6 @@
                         <th>Price</th>
                         <th>Stock</th>
                         <th>Date Created</th>
-                        <th>Actions</th>
                     </tr>
 
                 </thead>
@@ -35,10 +34,6 @@
                         <td>$100.00</td>
                         <td>200</td>
                         <td>2025-02-15</td>
-                        <td>
-                            <button class="btn btn-success btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
                     </tr>
 
                 </tbody>
