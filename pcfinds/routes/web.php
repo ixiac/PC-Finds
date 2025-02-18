@@ -74,5 +74,46 @@ Route::get('/edit-customer/{id}', [AdminTableController::class, 'edit_customer_a
 # Route for updating customer account
 Route::put('/update-customer/{id}', [AdminTableController::class, 'update_customer_account_table'])->name('update_customer_account_table_route');
 
+
+#Route for customer account
+Route::get('/customer-account', function () {
+    return view('content.customer_account');
+})->name('customer-account');
+
+#Route for refund product tickets
+Route::get('/refund-product-tickets', function () {
+    return view('content.refund_tickets');
+})->name('refund-product-tickets');
+
+#Route for refund product list
+Route::get('/refund-product-list', function () {
+    return view('content.refund_list');
+})->name('refund-product-list');
+
+#Route for manage category
+Route::get('/manage-category', function () {
+    return view('content.manage_category');
+})->name('manage-category');
+
+#Route for add category
+Route::get('/add-category', function () {
+    return view('content.add_category');
+})->name('add-category');
+
+#Route for manage product
+Route::get('/manage-product', function () {
+    return view('content.manage_product');
+})->name('manage-product');
+
+#Route for add product
+Route::get('/add-product', function () {
+    return view('content.add_product');
+})->name('add-product');
+
+#Route for logs
+Route::get('/admin-logs', function () {
+    return view('content.admin_logs');
+})->name('admin-logs');
 #Route for deleting customer account
 Route::delete('/delete-customer/{id}', [AdminTableController::class, 'delete_customer_account_table'])->name('delete_customer_account_table_route');
+

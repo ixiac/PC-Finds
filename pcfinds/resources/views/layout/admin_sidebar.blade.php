@@ -30,9 +30,14 @@
 
             <div class="collapse" id="manageUsersCollapse">
                 <ul class="list-unstyled ps-3 submenu">
+
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('admin-account') }}">Admin
+                            Account</a></li>
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('customer-account') }}">Customer
+
                     <li><a class="nav-link text-light submenu-item" href="{{ route('admin-table') }}">Admin Account</a>
                     </li>
-                    <li><a class="nav-link text-light submenu-item" href="{{ route('customer-table') }}">Customer
+
                             Account</a>
                     </li>
                 </ul>
@@ -42,16 +47,47 @@
 
         <li class="nav-item">
 
-            <a class="nav-link text-light" href="">
-                <i class="bi bi-person"></i> Profile
+            <a class="nav-link text-light d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                href="#refundCollapse" role="button" aria-expanded="false" aria-controls="refundCollapse">
+                <span><i class="bi bi-cart-x"></i> Refund</span>
+                <i class="bi bi-chevron-down"></i>
             </a>
+
+            <div class="collapse" id="refundCollapse">
+                <ul class="list-unstyled ps-3 submenu">
+                    <li>
+                        <a class="nav-link text-light submenu-item" href="{{ ('refund-product-tickets') }}">Refund
+                            Tickets</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-light submenu-item" href="{{ ('refund-product-list') }}">Refund List</a>
+                    </li>
+                </ul>
+            </div>
 
         </li>
 
         <li class="nav-item">
 
-            <a class="nav-link text-light" href="   ">
-                <i class="bi bi-box-arrow-right"></i> Logout
+            <a class="nav-link text-light d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                href="#inventoryCollapse" role="button" aria-expanded="false" aria-controls="inventoryCollapse">
+                <span><i class="bi bi-boxes"></i> Inventory Control</span>
+                <i class="bi bi-chevron-down"></i>
+            </a>
+
+            <div class="collapse" id="inventoryCollapse">
+                <ul class="list-unstyled ps-3 submenu">
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('manage-category') }}">Manage Category</a></li>
+                    <li><a class="nav-link text-light submenu-item" href="{{ route('manage-product') }}">Manage Product</a></li>
+                </ul>
+            </div>
+
+        </li>
+
+        <li class="nav-item">
+
+            <a class="nav-link text-light" href="{{ route('admin-logs') }}">
+            <i class="bi bi-list-check"></i> Logs
             </a>
 
         </li>
