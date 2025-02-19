@@ -22,14 +22,6 @@ Route::get('/sign-up', function () {
 Route::post('/sign-up', [RegistrationControl::class, 'account_register'])->name('account_register_route');
 
 
-// Sign In
-
-
-# Route for the sign-in form
-// Route::get('/sign-in', function () {
-//     return view('paging.sign_in');
-// })->name('sign-in');
-
 # Route for form sign-in submission
 
 Route::get('/sign-in', function () {
@@ -57,14 +49,6 @@ Route::middleware(['auth'])->group(function () {
 
 // Admin
 
-
-# Route for admin sign-in form
-Route::get('/admin-sign-in', function () {
-    return view('paging.admin_sign_in');
-})->name('admin-sign-in');
-
-# Route for admin sign-in submission
-Route::post('/admin-sign-in', [AdminSignInController::class, 'admin_sign_in'])->name('admin_sign_in_route');
 
 # Route for the home page
 Route::get('/', function () {
