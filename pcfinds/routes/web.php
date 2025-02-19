@@ -24,9 +24,6 @@ Route::get('/sign-up', function () {
 # Route for form sign-up submission
 Route::post('/sign-up', [RegistrationControl::class, 'account_register'])->name('account_register_route');
 
-
-// Sign In
-
 # Route for form sign-in submission
 
 // Sign In
@@ -56,7 +53,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 // Admin
-
 
 # Route for admin sign-in form
 Route::get('/admin-sign-in', function () {
