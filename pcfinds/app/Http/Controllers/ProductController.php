@@ -11,14 +11,12 @@ class ProductController extends Controller
     public function show_category()
     {
         $categories = Category::select('category_id', 'category_name')->get();
-
         return view('content.add_product', compact('categories'));
     }
 
     public function product_table()
     {
         $products = Product::all();
-
         return view('content.manage_product', compact('products'));
     }
 
@@ -31,6 +29,7 @@ class ProductController extends Controller
             'product_stock' => ['required', 'integer', 'min:0', 'lt:500'],
             'category_id' => ['required'],
             'product_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'description' => ['nullable', 'string', 'max:255', 'unique:product,description'],
         ], [
             'product_name.required' => 'Product name is required.',
             'product_name.string' => 'Product name must be a valid string.',
@@ -52,7 +51,7 @@ class ProductController extends Controller
             'product_image.max' => 'The image must not be greater than 2MB.',
         ]);
 
-        // Handle file upload for product image if provided
+        // Handle file upload
         if ($request->hasFile('product_image')) {
             $imageName = time() . '.' . $request->file('product_image')->getClientOriginalExtension();
             $imagePath = $request->file('product_image')->storeAs('products', $imageName);
@@ -66,8 +65,9 @@ class ProductController extends Controller
             'selling_price' => $request->input('selling_price'),
             'date_added' => now(),
             'category_id' => $request->input('category_id'),
-            'product_stock' => $request->input('product_stock'),
-            'product_image' => $imagePath, // Save the file path for the image
+            'quantity' => $request->input('product_stock'), // Corrected mapping
+            'description' => $request->input('description'),
+            'image' => $imagePath, // Corrected mapping
         ]);
 
         return back()->with('success', 'Product added successfully!');
@@ -76,8 +76,8 @@ class ProductController extends Controller
     public function edit_product($product_id)
     {
         $product = Product::with('category')->find($product_id);
-        $categories = Category::select('category_id', 'category_name')->get(); // Fetch categories
-        return view('content.edit_product', compact('product', 'categories')); // Pass both variables to the view
+        $categories = Category::select('category_id', 'category_name')->get();
+        return view('content.edit_product', compact('product', 'categories'));
     }
 
     public function update_product(Request $request, $product_id)
@@ -86,29 +86,31 @@ class ProductController extends Controller
             'product_name' => 'required|string|max:255',
             'retail_price' => 'required|numeric|min:0',
             'selling_price' => 'required|numeric|min:0',
-            'product_stock' => 'required|integer|min:0',
+            'product_stock' => 'required|integer|min:0', // Corrected mapping
             'category_id' => 'required|exists:category,category_id',
             'product_image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'description' => 'nullable|string|max:255',
         ]);
 
         $product = Product::findOrFail($product_id);
 
-        if ($request->hasFile('product_image')) {
+        if ($request->hasFile('product_image')) { // Corrected field name
             $imagePath = $request->file('product_image')->store('products', 'public');
         } else {
-            $imagePath = $product->product_image;
+            $imagePath = $product->image;
         }
 
-
-        if ($product->product_stock != $request->input('product_stock')) {
-            $product->product_stock = $request->input('product_stock');
+        // Corrected quantity update
+        if ($product->quantity != $request->input('product_stock')) {
+            $product->quantity = $request->input('product_stock');
         }
 
         $product->product_name = $request->input('product_name');
         $product->retail_price = $request->input('retail_price');
         $product->selling_price = $request->input('selling_price');
         $product->category_id = $request->input('category_id');
-        $product->product_image = $imagePath;
+        $product->description = $request->input('description');
+        $product->image = $imagePath;
 
         $product->save();
 
@@ -120,8 +122,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($product_id);
         $product->delete();
 
-        return back()->with('success', 'Customer account deleted successfully.');
-
+        return back()->with('success', 'Product deleted successfully.');
     }
-
 }

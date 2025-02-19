@@ -30,10 +30,14 @@
 
             <div class="collapse" id="manageUsersCollapse">
                 <ul class="list-unstyled ps-3 submenu">
-                
+
+                    @if (Auth::user()->role == 3)
+                    
                     <li>
                         <a class="nav-link text-light submenu-item" href="{{ route('admin-table') }}">Admin Account</a>
                     </li>
+                    
+                    @endif
 
                     <li>
                         <a class="nav-link text-light submenu-item" href="{{ route('customer-table') }}">Customer
@@ -91,13 +95,17 @@
 
         </li>
 
+        @if (Auth::user()->role == 3)
+        
         <li class="nav-item">
-
+            
             <a class="nav-link text-light" href="{{ route('admin-report') }}">
                 <i class="bi bi-clipboard-data"></i> Reports
             </a>
-
+            
         </li>
+        
+        @endif
 
     </ul>
 
