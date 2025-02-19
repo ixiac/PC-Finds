@@ -65,7 +65,7 @@ Route::get('/admin-sign-in', function () {
 
 # Route for admin sign-in submission
 Route::post('/admin-sign-in', [AdminSignInController::class, 'admin_sign_in'])->name('admin_sign_in_route');
-=======
+
 # Route for the home page
 Route::get('/', function () {
     return view('welcome');
