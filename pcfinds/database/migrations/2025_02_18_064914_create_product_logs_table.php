@@ -14,7 +14,6 @@ class CreateProductLogsTable extends Migration
             $table->integer('restocked_by');
             $table->integer('quantity_restocked');
             $table->timestamp('date_restocked')->useCurrent();
-            $table->timestamps();
         });
     }
 
