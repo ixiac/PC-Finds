@@ -18,9 +18,10 @@ class Product extends Model
         'retail_price', 
         'selling_price', 
         'date_added', 
-        'date_restocked', 
+        'quantity_sold', 
         'category_id', 
-        'image'
+        'image',
+        'description',
     ];
 
     public function category()
