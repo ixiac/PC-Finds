@@ -35,11 +35,14 @@ Route::get('/sign-in', function () {
 Route::post('/sign-in', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
+Route::get('/admin-logs', [AuthController::class, 'index'])->name('admin-logs');
+
+
 # Middleware for the user role
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('content.product_page_default');
-    })->name('customer.dashboard');
+    })->name('customer-dashboard');
 
     Route::get('/admin-dashboard', function () {
         return view('content.admin_dashboard');
@@ -170,12 +173,6 @@ Route::put('/update-product/{product_id}', [ProductController::class, 'update_pr
 
 # Route for deleting customer account
 Route::delete('/delete-product/{product_id}', [ProductController::class, 'delete_product'])->name('delete-product');
-
-#Route for account logs
-
-Route::get('/admin-logs', function () {
-    return view('content.admin_logs');
-})->name('admin-logs');
 
 #Route for product logs
 Route::get('/admin-product-logs', function () {
