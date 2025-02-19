@@ -85,25 +85,6 @@
                 $("#defaultView, #promoBanner").show();
             });
 
-            $(".add-to-cart").on("click", function (e) {
-                e.preventDefault();
-                var productId = $(this).data("id");
-
-                $.ajax({
-                    url: "/add-to-cart",
-                    type: "POST",
-                    data: {
-                        product_id: productId,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    success: function (response) {
-                        alert("Product added to cart!");
-                    },
-                    error: function () {
-                        alert("Failed to add product to cart.");
-                    }
-                });
-            });
         });
     </script>
 
