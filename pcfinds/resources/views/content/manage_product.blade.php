@@ -11,7 +11,7 @@
                 <a href="{{ ('add-product') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
                     style="width: 140px; margin-top: 58px; right: 280px; background-color: #2fa572;">Add New Product</a>
 
-                <a href="{{ ('admin-product-logs') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
+                <a href="{{ ('product-logs') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
                     style="width: 120px; margin-top: 58px; right: 430px; background-color: #2fa572;">Product Logs</a>
 
             @endif
@@ -24,7 +24,7 @@
                         <th>Category</th>
                         <th>Retail</th>
                         <th>Price</th>
-                        <th>Stock</th>
+                        <th>Total Stock</th>
                         <th>Date Created</th>
                         <th>Actions</th>
                     </tr>
@@ -36,19 +36,21 @@
                             <td>{{ $product->product_id }}</td>
                             <td>{{ $product->product_name }}</td>
                             <td>{{ $product->category->category_name ?? 'No Category' }}</td>
-                            <td>${{ number_format($product->retail_price, 2) }}</td>
-                            <td>${{ number_format($product->selling_price, 2) }}</td>
+                            <td>₱{{ number_format($product->retail_price, 2) }}</td>
+                            <td>₱{{ number_format($product->selling_price, 2) }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->date_added }}</td>
                             <td>
                                 <a href="{{ route('edit-product', $product->product_id) }}"
                                     class="btn btn-success btn-sm">Edit</a>
-                                <form action="{{ route('delete-product', $product->product_id) }}" method="POST"
-                                    class="d-inline-block delete-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                @if (Auth::user()->role == 3)
+                                    <form action="{{ route('delete-product', $product->product_id) }}" method="POST"
+                                        class="d-inline-block delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

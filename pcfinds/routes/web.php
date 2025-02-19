@@ -69,7 +69,7 @@ Route::get('/getCategoryProducts/{categoryId}', [ProductCategoryController::clas
 Route::get('/product-details-{id}', [ProductDetailsController::class, 'show'])->name('product-details');
 
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     // Route for product details
     Route::get('/product-details', function () {
         return view('content.product_details');
@@ -178,9 +178,7 @@ Route::get('/admin-logs', function () {
 })->name('admin-logs');
 
 #Route for product logs
-Route::get('/admin-product-logs', function () {
-    return view('content.product_logs');
-})->name('admin-product-logs');
+Route::get('/product-logs', [ProductController::class, 'show_product_logs'])->name('product-logs');
 
 #Route for order logs
 Route::get('/order-logs', function () {
