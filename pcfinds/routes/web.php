@@ -12,6 +12,8 @@ use App\Http\Controllers\CountAccountController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderHistoryController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\RefundController;
 
 
@@ -54,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/admin-dashboard', [CountAccountController::class, 'adminDashboard'])
-->name('admin-dashboard');
+    ->name('admin-dashboard');
 
 # Route for the home page
 Route::get('/', function () {
@@ -111,6 +113,9 @@ Route::middleware('auth')->group(function () {
 
 
 #Admin Accounts
+Route::get('/admin-dashboard/top-sales', [AdminDashboardController::class, 'topSellingProducts'])->name('admin-dashboard.top-sales');
+Route::get('/admin-dashboard/category-sales', [AdminDashboardController::class, 'categorySalesProgress'])->name('admin-dashboard.category-sales');
+
 
 # Route for admin table
 Route::get('/admin-table', [AdminTableController::class, 'admin_account_table'])
@@ -197,8 +202,10 @@ Route::get('/order-logs', function () {
 
 #Route for reports
 Route::get('/admin-report', function () {
-    return view('content.report');
+    return view('content.report'); // Loads the Blade view
 })->name('admin-report');
+
+Route::get('/admin-report-data', [ReportController::class, 'lowStockData']);
 
 #Route for deleting customer account
 Route::delete('/delete-customer/{id}', [AdminTableController::class, 'delete_customer_account_table'])->name('delete_customer_account_table_route');
