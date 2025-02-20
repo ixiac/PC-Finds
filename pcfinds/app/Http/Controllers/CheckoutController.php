@@ -14,35 +14,33 @@ class CheckoutController extends Controller
     public function checkout(Request $request)
     {
         $userId = Auth::id();
+        $selectedCartIds = array_map('intval', $request->input('cartItems', []));
 
-        // Fetch cart items of the logged-in user
-        $cartItems = Cart::where('id', $userId)->get();
-
-        if ($cartItems->isEmpty()) {
-            return back()->with('error', 'Your cart is empty.');
+        if (empty($selectedCartIds)) {
+            return back()->with('error', 'No items selected for checkout.');
         }
 
-        // Retrieve user's shipping address from the 'account' table
+        $cartItems = Cart::where('id', $userId)->whereIn('cart_id', $selectedCartIds)->get();
+
+        if ($cartItems->isEmpty()) {
+            return back()->with('error', 'Selected items not found in the cart.');
+        }
+
         $user = Account::where('id', $userId)->first();
         if (!$user) {
             return back()->with('error', 'User not found.');
         }
 
-        // Calculate total amount
-        $totalAmount = $cartItems->sum(function ($item) {
-            return $item->quantity * $item->product->selling_price;
-        });
+        $totalAmount = $cartItems->sum(fn($item) => $item->quantity * $item->product->selling_price);
 
-        // Insert into order_history
         $order = OrderHistory::create([
-            'account_id' => $userId, // Store the user's ID in order_history
+            'account_id' => $userId,
             'date_order_history' => now(),
             'total_amount' => $totalAmount,
-            'order_status' => 1, // 1 = Pending
-            'shipping_address' => $user->address, // Use user's saved address
+            'order_status' => 1,
+            'shipping_address' => $user->address,
         ]);
 
-        // Insert order items
         foreach ($cartItems as $item) {
             OrderItem::create([
                 'order_history_id' => $order->order_history_id,
@@ -53,10 +51,10 @@ class CheckoutController extends Controller
             ]);
         }
 
-        // Clear cart after checkout
-        Cart::where('id', $userId)->delete();
+        Cart::where('id', $userId)->whereIn('cart_id', $selectedCartIds)->delete();
 
         return redirect()->route('product-page')->with('success', 'Checkout successful!');
     }
+
 }
 
