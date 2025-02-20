@@ -23,7 +23,7 @@ class Product extends Model
         'quantity_sold', 
         'category_id', 
         'image',
-        'description',
+        'description', ];
 
 //         'product_name',
 //         'retail_price',
