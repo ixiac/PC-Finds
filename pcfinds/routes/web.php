@@ -3,14 +3,12 @@
 use App\Http\Controllers\AdminTableController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationControl;
-use App\Http\Controllers\SignInController;
 use App\Http\Controllers\ProductController;
-
-use App\Http\Controllers\AdminSignInController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\CountAccountController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderHistoryController;
@@ -39,16 +37,24 @@ Route::get('/sign-in', function () {
 Route::post('/sign-in', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-# Middleware for the user role
+Route::get('/admin-logs', [AuthController::class, 'index'])->name('admin-logs');
+
+
+
+// Middleware for authenticated users
 Route::middleware(['auth'])->group(function () {
+    // Customer Dashboard
     Route::get('/dashboard', function () {
+
         return view('content.c_dashboard_default');
     })->name('customer.dashboard');
 
-    Route::get('/admin-dashboard', function () {
-        return view('content.admin_dashboard');
-    })->name('admin-dashboard')->middleware(['role:admin', 'role:super-admin']);
+    // Admin Dashboard with role-based middleware
+    Route::get('/admin-dashboard', [CountAccountController::class, 'adminDashboard'])
+        ->name('admin-dashboard')
+        ->middleware('role:admin|super-admin');
 });
+
 
 # Route for the home page
 Route::get('/', function () {
@@ -73,9 +79,7 @@ Route::get('/getCategoryProducts/{categoryId}', [ProductCategoryController::clas
 Route::get('/product-details-{id}', [ProductDetailsController::class, 'show'])->name('product-details');
 
 
-
 # Customer Routes
-
 Route::middleware('auth')->group(function () {
     // Route for product details
     Route::get('/product-details', function () {
@@ -86,7 +90,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/product-page', function () {
         return view('content.c_dashboard_default');
     })->name('product-page');
-
 
     // Route for cart page
     Route::get('/cart-page', function () {
@@ -111,9 +114,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin-dashboard', function () {
     return view('content.admin_dashboard');
 })->name('admin-dashboard');
-
-
-// Manage Account
 
 #Admin Accounts
 
@@ -191,12 +191,6 @@ Route::put('/update-product/{product_id}', [ProductController::class, 'update_pr
 
 # Route for deleting customer account
 Route::delete('/delete-product/{product_id}', [ProductController::class, 'delete_product'])->name('delete-product');
-
-#Route for account logs
-
-Route::get('/admin-logs', function () {
-    return view('content.admin_logs');
-})->name('admin-logs');
 
 #Route for product logs
 Route::get('/product-logs', [ProductController::class, 'show_product_logs'])->name('product-logs');
