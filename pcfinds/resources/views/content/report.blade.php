@@ -41,18 +41,34 @@
                 options: { responsive: true }
             });
 
-            // Low Stock (Pie Chart)
-            new Chart(document.getElementById("lowStock"), {
-                type: "pie",
-                data: {
-                    labels: ["Keyboards", "Mice", "Monitors", "Headsets", "Graphics Cards"],
-                    datasets: [{
-                        data: [5, 3, 8, 2, 6],
-                        backgroundColor: ["#FF5733", "#33B5E5", "#FFC107", "#8E44AD", "#2ECC71"]
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
+            fetch("/admin-report-data")
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Fetched Data:", data); // Debugging
+
+                    if (!data.labels.length || !data.data.length) {
+                        console.error("No data available for the chart.");
+                        return;
+                    }
+
+                    const ctx = document.getElementById("lowStock").getContext("2d");
+
+                    new Chart(ctx, {
+                        type: "pie",
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                data: data.data,
+                                backgroundColor: data.colors // Use dynamic colors from API
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    });
+                })
+                .catch(error => console.error("Error fetching low stock data:", error));
 
             // Refunds (Approved vs Declined) (Doughnut Chart)
             new Chart(document.getElementById("refunds"), {

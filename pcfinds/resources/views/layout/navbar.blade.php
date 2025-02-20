@@ -29,11 +29,15 @@
                 <!-- Check if user is logged in -->
                 @auth
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->username }}
+                            <img src="{{ Auth::user()->image ? asset('images/' . Auth::user()->image) : asset('images/default_avatar.jpg') }}"
+                                alt="pic" class="object-fit-cover rounded-circle"
+                                style="width: 50px; height: 50px; margin: 0 0 0 5px;">
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class=" dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="dropdown-item">Sign-out</button>
@@ -56,7 +60,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    document.getElementById('products-link').addEventListener('click', function(event) {
+    document.getElementById('products-link').addEventListener('click', function (event) {
         event.preventDefault();
 
         Swal.fire({

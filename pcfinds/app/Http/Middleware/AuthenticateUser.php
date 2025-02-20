@@ -20,10 +20,10 @@ class AuthenticateUser
         if ($request->has('username') && $request->has('password')) {
             $username = $request->input('username');
             $password = $request->input('password');
-            
+
             // Retrieve the user from the account table using Eloquent
             $user = Account::where('username', $username)->first();
-            
+
             // If user found and password is correct
             if ($user && password_verify($password, $user->password)) {
                 // Log the user in
@@ -35,7 +35,7 @@ class AuthenticateUser
                     return redirect()->route('customer.dashboard');
                 } elseif ($role == 2 || $role == 3) {
                     return redirect()->route('admin-dashboard');
-                } 
+                }
             }
         }
 

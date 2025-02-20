@@ -3,18 +3,22 @@
 use App\Http\Controllers\AdminTableController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationControl;
-use App\Http\Controllers\SignInController;
 use App\Http\Controllers\ProductController;
-
-use App\Http\Controllers\AdminSignInController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\CountAccountController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderHistoryController;
+<<<<<<< HEAD
 use App\Http\Controllers\OrderController;
+=======
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\RefundController;
+>>>>>>> 9238bfa2395eed16c45984b468468dd8e726cafe
 
 
 // Sign Up
@@ -40,25 +44,27 @@ Route::get('/sign-in', function () {
 Route::post('/sign-in', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-# Middleware for the user role
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('content.c_dashboard_default');
-    })->name('customer.dashboard');
+Route::get('/admin-logs', [AuthController::class, 'index'])->name('admin-logs');
 
-    Route::get('/admin-dashboard', function () {
-        return view('content.admin_dashboard');
-    })->name('admin-dashboard')->middleware(['role:admin', 'role:super-admin']);
+
+
+// Middleware for authenticated users
+Route::middleware(['auth'])->group(function () {
+    // Customer Dashboard
+    Route::get('/dashboard', function () {
+
+        return view('content.c_dashboard_default');
+    })->name('customer-dashboard');
+
+    // Admin Dashboard with role-based middleware
 });
+
+Route::get('/admin-dashboard', [CountAccountController::class, 'adminDashboard'])
+    ->name('admin-dashboard');
 
 # Route for the home page
 Route::get('/', function () {
     return view('welcome');
-});
-
-# Route for the products page
-Route::get('/products_page', function () {
-    return view('products_page');
 });
 
 Route::get('/cbe', function () {
@@ -74,9 +80,7 @@ Route::get('/getCategoryProducts/{categoryId}', [ProductCategoryController::clas
 Route::get('/product-details-{id}', [ProductDetailsController::class, 'show'])->name('product-details');
 
 
-
 # Customer Routes
-
 Route::middleware('auth')->group(function () {
     // Route for product details
     Route::get('/product-details', function () {
@@ -87,7 +91,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/product-page', function () {
         return view('content.c_dashboard_default');
     })->name('product-page');
-
 
     // Route for cart page
     Route::get('/cart-page', function () {
@@ -105,18 +108,18 @@ Route::middleware('auth')->group(function () {
     // Route for order history
     Route::get('/order-history', [OrderHistoryController::class, 'index'])->name('order.history');
 
+    // Route for cancel order
+    Route::post('/orders/cancel/{item_id}', [OrderHistoryController::class, 'cancelOrder'])->name('orders.cancel');
+
+    Route::post('/orders/refund/{id}', [RefundController::class, 'requestRefund'])->name('orders.refund');
 
 });
 
-# Route for admin dashboard
-Route::get('/admin-dashboard', function () {
-    return view('content.admin_dashboard');
-})->name('admin-dashboard');
-
-
-// Manage Account
 
 #Admin Accounts
+Route::get('/admin-dashboard/top-sales', [AdminDashboardController::class, 'topSellingProducts'])->name('admin-dashboard.top-sales');
+Route::get('/admin-dashboard/category-sales', [AdminDashboardController::class, 'categorySalesProgress'])->name('admin-dashboard.category-sales');
+
 
 # Route for admin table
 Route::get('/admin-table', [AdminTableController::class, 'admin_account_table'])
@@ -193,19 +196,15 @@ Route::put('/update-product/{product_id}', [ProductController::class, 'update_pr
 # Route for deleting customer account
 Route::delete('/delete-product/{product_id}', [ProductController::class, 'delete_product'])->name('delete-product');
 
-#Route for account logs
-
-Route::get('/admin-logs', function () {
-    return view('content.admin_logs');
-})->name('admin-logs');
-
 #Route for product logs
 Route::get('/product-logs', [ProductController::class, 'show_product_logs'])->name('product-logs');
 
 #Route for reports
 Route::get('/admin-report', function () {
-    return view('content.report');
+    return view('content.report'); // Loads the Blade view
 })->name('admin-report');
+
+Route::get('/admin-report-data', [ReportController::class, 'lowStockData']);
 
 #Route for deleting customer account
 Route::delete('/delete-customer/{id}', [AdminTableController::class, 'delete_customer_account_table'])->name('delete_customer_account_table_route');
