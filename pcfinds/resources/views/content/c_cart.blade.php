@@ -33,8 +33,8 @@
 
                                 {{-- Product Image --}}
                                 <div class="me-4">
-                                    <img src="{{ asset('images/' . $item->product->image) }}"
-                                        alt="{{ $item->product->product_name }}" class="rounded" width="90" height="90">
+                                    <img src="{{ $item->product->image }}" alt="{{ $item->product->product_name }}" class="rounded"
+                                        width="90" height="90">
                                 </div>
 
                                 {{-- Product Details --}}
@@ -82,7 +82,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                    <button type="button" class="btn btn-success" id="Orderbtn" data-dismiss="modal">Confirm
+                        Checkout</button>
                     <button type="button" class="btn btn-success" id="Orderbtn">Confirm Checkout</button>
+
+                    <button type="button" class="btn btn-success" id="Orderbtn">Confirm Checkout</button>
+
                 </div>
             </div>
         </div>
@@ -128,7 +134,14 @@
 
                         const listItem = document.createElement('li');
                         listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+
+                        listItem.innerHTML = `
+                                                <span>${name} (x${quantity})</span>
+                                                <strong>₱${subtotal.toFixed(2)}</strong>
+                                            `;
+
                         listItem.innerHTML = `<span>${name} (x${quantity})</span><strong>₱${subtotal.toFixed(2)}</strong>`;
+
                         checkoutList.appendChild(listItem);
                     }
                 });
@@ -152,6 +165,19 @@
                     form.submit();
                 }
             });
+
+            function checkout(selectedItems) {
+                let form = document.createElement("form");
+                form.method = "POST";
+                form.action = "{{ route('checkout') }}";
+                form.innerHTML = `
+                            @csrf
+                            ${selectedItems.map(id => `<input type="hidden" name="cartItems[]" value="${id}">`).join("")}
+                        `;
+                document.body.appendChild(form);
+                form.submit();
+            }
+
         });
     </script>
 

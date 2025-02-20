@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Cart;
 use App\Models\OrderHistory;
 use App\Models\OrderItem;
-use App\Models\Account; // Import the Account model
+use App\Models\Account;
+use App\Models\Product;
 
 class CheckoutController extends Controller
 {
@@ -52,6 +54,15 @@ class CheckoutController extends Controller
         }
 
         Cart::where('id', $userId)->whereIn('cart_id', $selectedCartIds)->delete();
+
+        $product = Product::find($item->product_id);
+        if ($product) {
+            $product->update([
+                "quantity" => max(0, $product->quantity - $item->quantity),
+                "quantity_sold" => $product->quantity_sold + $item->quantity,
+            ]);
+        }
+
 
         return redirect()->route('product-page')->with('success', 'Checkout successful!');
     }
