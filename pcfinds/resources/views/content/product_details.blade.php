@@ -65,7 +65,19 @@
         $(document).ready(function () {
             $(".add-to-cart").on("click", function () {
                 var productId = $(this).data("id");
-                var quantity = $("#quantity").val();
+                var quantity = parseInt($("#quantity").val());
+                var availableStock = parseInt("{{ $product->quantity }}");
+
+                // Check if selected quantity exceeds available stock
+                if (quantity > availableStock) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error!",
+                        text: "The selected quantity exceeds the available stock.",
+                        confirmButtonColor: "#d33"
+                    });
+                    return;
+                }
 
                 $.ajax({
                     url: "{{ url('/add-to-cart') }}",

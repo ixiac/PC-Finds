@@ -14,6 +14,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\RefundController;
 
 
 // Sign Up
@@ -103,6 +104,10 @@ Route::middleware('auth')->group(function () {
     // Route for order history
     Route::get('/order-history', [OrderHistoryController::class, 'index'])->name('order.history');
 
+    // Route for cancel order
+    Route::post('/orders/cancel/{item_id}', [OrderHistoryController::class, 'cancelOrder'])->name('orders.cancel');
+
+    Route::post('/orders/refund/{id}', [RefundController::class, 'requestRefund'])->name('orders.refund');
 
 });
 

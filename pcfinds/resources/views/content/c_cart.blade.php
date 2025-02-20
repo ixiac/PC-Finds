@@ -23,9 +23,10 @@
                     <div class="col-12 mb-3">
                         <div class="card shadow-sm p-3">
                             <div class="card-body d-flex align-items-center">
-                                {{-- Checkbox (Centered Vertically) --}}
+                                {{-- Checkbox (Now Has a Proper Value) --}}
                                 <div class="d-flex align-items-center justify-content-center me-4" style="min-width: 50px;">
                                     <input type="checkbox" class="form-check-input large-checkbox cart-checkbox"
+                                        value="{{ $item->cart_id }}" {{-- Ensure each checkbox has a unique cart_id --}}
                                         data-name="{{ $item->product->product_name }}" data-quantity="{{ $item->quantity }}"
                                         data-price="{{ $item->product->selling_price }}">
                                 </div>
@@ -71,8 +72,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="checkoutModalLabel">Order Summary</h5>
-                    <button type="button" class="btn" data-dismiss="modal" aria-label="Close" style="color: #d33;"><i
-                            class="fas fa-times"></i></button>
+                    <button type="button" class="btn" data-dismiss="modal" aria-label="Close" style="color: #d33;">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <ul class="list-group" id="checkoutList"></ul>
@@ -80,19 +82,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-success" id="Orderbtn" data-dismiss="modal">Confirm Checkout</button>
+                    <button type="button" class="btn btn-success" id="Orderbtn">Confirm Checkout</button>
                 </div>
             </div>
         </div>
     </div>
 
-    {{-- Include SweetAlert and Bootstrap --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const deleteButtons = document.querySelectorAll('.delete-btn');
             const checkboxes = document.querySelectorAll('.cart-checkbox');
             const selectAll = document.getElementById('selectAll');
             const checkoutBtn = document.getElementById('checkoutBtn');
@@ -100,34 +97,12 @@
             const checkoutTotal = document.getElementById('checkoutTotal');
             const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'));
 
-            // Single Item Deletion
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const form = this.closest('.delete-form');
-
-                    Swal.fire({
-                        title: "Are you sure?",
-                        text: "You won't be able to undo this action!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#d33",
-                        cancelButtonColor: "#3085d6",
-                        confirmButtonText: "Yes, delete it!"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit(); // Submit the form after confirmation
-                        }
-                    });
-                });
-            });
-
             // Select All Functionality
             selectAll.addEventListener('change', function () {
                 checkboxes.forEach(cb => cb.checked = selectAll.checked);
                 updateCheckoutButton();
             });
 
-            // Enable Checkout Button Only if Items are Selected
             function updateCheckoutButton() {
                 const anyChecked = [...checkboxes].some(cb => cb.checked);
                 checkoutBtn.disabled = !anyChecked;
@@ -140,7 +115,7 @@
             // Checkout Modal Functionality
             checkoutBtn.addEventListener('click', function () {
                 let total = 0;
-                checkoutList.innerHTML = ""; // Clear previous items
+                checkoutList.innerHTML = "";
 
                 checkboxes.forEach(cb => {
                     if (cb.checked) {
@@ -151,58 +126,32 @@
 
                         total += subtotal;
 
-                        // Append selected items to modal list
                         const listItem = document.createElement('li');
                         listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-                        listItem.innerHTML = `
-                                        <span>${name} (x${quantity})</span>
-                                        <strong>₱${subtotal.toFixed(2)}</strong>
-                                    `;
+                        listItem.innerHTML = `<span>${name} (x${quantity})</span><strong>₱${subtotal.toFixed(2)}</strong>`;
                         checkoutList.appendChild(listItem);
                     }
                 });
 
-                // Update total price in modal
                 checkoutTotal.textContent = `₱${total.toFixed(2)}`;
-
-                // Show checkout modal
                 checkoutModal.show();
             });
 
             // Checkout Confirmation
-            Orderbtn.addEventListener("click", function () {
+            document.getElementById("Orderbtn").addEventListener("click", function () {
                 let selectedItems = Array.from(checkboxes)
                     .filter(cb => cb.checked)
                     .map(cb => cb.value);
 
                 if (selectedItems.length > 0) {
-                    Swal.fire({
-                        title: "Confirm Checkout?",
-                        text: "You are about to place an order for selected items.",
-                        icon: "info",
-                        showCancelButton: true,
-                        confirmButtonColor: "#28a745",
-                        cancelButtonColor: "#6c757d",
-                        confirmButtonText: "Yes, checkout"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            checkout(selectedItems);
-                        }
-                    });
+                    let form = document.createElement("form");
+                    form.method = "POST";
+                    form.action = "{{ route('checkout') }}";
+                    form.innerHTML = `@csrf ${selectedItems.map(id => `<input type="hidden" name="cartItems[]" value="${id}">`).join("")}`;
+                    document.body.appendChild(form);
+                    form.submit();
                 }
             });
-
-            function checkout(selectedItems) {
-                let form = document.createElement("form");
-                form.method = "POST";
-                form.action = "{{ route('checkout') }}";
-                form.innerHTML = `
-                    @csrf
-                    ${selectedItems.map(id => `<input type="hidden" name="cartItems[]" value="${id}">`).join("")}
-                `;
-                document.body.appendChild(form);
-                form.submit();
-            }
         });
     </script>
 
@@ -212,7 +161,6 @@
             height: 22px;
         }
 
-        /* Center checkbox vertically */
         .form-check-input {
             display: flex;
             align-items: center;
