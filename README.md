@@ -1,2 +1,2 @@
-# PC-FInds
+# PC-Finds
  OJT Mini Project Assessment
