@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -24,33 +23,14 @@ class CartController extends Controller
 
         $userId = Auth::id();
 
-        // Retrieve the product to check its available quantity
-        $product = Product::where('product_id', $request->product_id)->first();
-        if (!$product) {
-            return response()->json(['error' => 'Product not found'], 404);
-        }
-
         // Check if product already exists in cart
         $cartItem = Cart::where('id', $userId)
             ->where('product_id', $request->product_id)
             ->first();
 
-        // Determine the new total quantity after the addition
-        $newQuantity = $request->quantity;
-        if ($cartItem) {
-            $newQuantity += $cartItem->quantity;
-        }
-
-        // Restriction: new quantity must not exceed the available product quantity
-        if ($newQuantity > $product->quantity) {
-            return response()->json([
-                'error' => 'The quantity you are trying to add exceeds the available stock.'
-            ], 400);
-        }
-
         if ($cartItem) {
             // Update quantity if already exists
-            $cartItem->quantity = $newQuantity;
+            $cartItem->quantity += $request->quantity;
             $cartItem->save();
         } else {
             // Create new cart entry
@@ -61,7 +41,7 @@ class CartController extends Controller
             ]);
         }
 
-        return response()->json(['message' => 'Product added to cart']);
+        return response()->json(['message' => 'Product added to cart!!!!']);
     }
 
     public function showCart()

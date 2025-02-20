@@ -16,8 +16,8 @@
         <div class="row">
             <!-- Product Image -->
             <div class="col-md-6">
-                <img src="{{ $product->image }}" class="img-fluid img-thumbnail" style="width: 500px; height: 450px;"
-                    alt="{{ $product->product_name }}">
+                <img src="{{ asset('images/' . $product->image) }}" class="img-fluid img-thumbnail"
+                    style="width: 500px; height: 450px;" alt="{{ $product->product_name }}">
             </div>
 
             <!-- Product Details -->

@@ -14,7 +14,6 @@ use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderHistoryController;
-use App\Http\Controllers\OrderController;
 
 
 // Sign Up
@@ -202,6 +201,11 @@ Route::get('/admin-logs', function () {
 #Route for product logs
 Route::get('/product-logs', [ProductController::class, 'show_product_logs'])->name('product-logs');
 
+#Route for order logs
+Route::get('/order-logs', function () {
+    return view('content.order_logs');
+})->name('order-logs');
+
 #Route for reports
 Route::get('/admin-report', function () {
     return view('content.report');
@@ -209,32 +213,4 @@ Route::get('/admin-report', function () {
 
 #Route for deleting customer account
 Route::delete('/delete-customer/{id}', [AdminTableController::class, 'delete_customer_account_table'])->name('delete_customer_account_table_route');
-
-// Route for handling orders
-
-# Route for pending orders
-Route::get('/pending-order', [OrderController::class, 'show_pending_order'])->name('pending-order');
-
-# Route to approve and cancel orders
-Route::post('/orders/approve', [OrderController::class, 'approve'])->name('orders.approve');
-Route::post('/orders/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
-
-# Route for approved orders table
-Route::get('/approved-order', [OrderController::class, 'show_approved_order'])->name('approved-order');
-
-# Route for to deliver submission
-Route::post('/orders/to_deliver', [OrderController::class, 'to_deliver'])->name('orders.to_deliver');
-
-# Route for to-deliver orders table
-Route::get('/deliver-order', [OrderController::class, 'show_to_deliver_order'])->name('deliver-order');
-
-# Route for complete order submission
-Route::post('/orders/completed', [OrderController::class, 'completed'])->name('orders.completed');
-
-# Route for complete orders table
-Route::get('/completed-order', [OrderController::class, 'show_completed_order'])->name('completed-order');
-
-// Route for cancelled orders table
-Route::get('/cancelled-order', [OrderController::class, 'show_cancelled_order'])->name('cancelled-order');
-
 

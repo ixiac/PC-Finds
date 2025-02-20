@@ -65,9 +65,8 @@
                     <div class="mb-2">
                         <label for="productStock" class="form-label" style="color: white; margin: 0; font-size: 14px;">Add
                             stocks</label>
-                        <input type="number" class="d-inline-block form-control"
-                            placeholder=" Current Total: {{ $product->quantity }}" id="productStock" name="quantity"
-                            style="height: 26px; font-size: 12px;">
+                        <input type="number" class="d-inline-block form-control" placeholder=" Current Total: {{ $product->quantity }}"
+                            id="productStock" name="quantity" style="height: 26px; font-size: 12px;" required>
                         @error('quantity')
                             <div class="text-danger" style="font-size: 12px;">{{ $message }}</div>
                         @enderror
@@ -105,7 +104,8 @@
 
                     <!-- Image Preview -->
                     <div class="mt-4 mb-2 text-center">
-                        <img class="img-fluid rounded-3" id="imagePreview" src="{{ asset($product->image) }}"
+                        <img class="img-fluid rounded-3" id="imagePreview"
+                            src="{{ $product->image ? asset('storage/' . $product->image) : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' }}"
                             alt="Image Preview"
                             style="width: 100%; max-height: 200px; object-fit: contain; border: 1px solid #ccc;">
                     </div>
@@ -152,7 +152,7 @@
                 reader.readAsDataURL(file);
             } else {
                 // If no file is selected, revert back to the original saved image or placeholder.
-                imagePreview.src = "{{ $product->image }}";
+                imagePreview.src = "{{ $product->image ? asset('storage/' . $product->image) : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' }}";
             }
         }
     </script>

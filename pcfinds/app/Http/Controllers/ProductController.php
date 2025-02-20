@@ -60,11 +60,12 @@ class ProductController extends Controller
         // Handle file upload
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('images'), $imageName);
-            $imagePath = 'images/' . $imageName;
+            // Specify the 'public' disk
+            $imagePath = $request->file('image')->storeAs('products', $imageName, 'public');
         } else {
             $imagePath = null;
         }
+
 
         Product::create([
             'product_name' => $request->input('product_name'),
@@ -105,36 +106,32 @@ class ProductController extends Controller
         $product = Product::findOrFail($product_id);
         $user = Auth::user();
 
-        // Get the quantity from the request and convert empty values to 0
-        $quantityInput = $request->input('quantity');
-        $quantity = ($quantityInput === null || $quantityInput === '') ? 0 : $quantityInput;
-
-        if ($user->role == 2) {
-            // Validate only the quantity field as nullable, but then override with 0 if empty
+        // Check if the user is authorized to only update quantity
+        if (Auth::user()->role == 2) {
+            // Validate only the quantity field
             $request->validate([
-                'quantity' => 'nullable|integer|min:0',
+                'quantity' => 'required|integer|min:1',
             ]);
 
-            $product->quantity = $quantity;
+            // Update only the quantity
+            $product->quantity = $request->input('quantity');
         } else {
-            // Validate all fields for users with full access; make quantity nullable
+            // Validate all fields for users with full access
             $request->validate([
                 'product_name' => 'required|string|max:255',
                 'retail_price' => 'required|numeric|min:0',
                 'selling_price' => 'required|numeric|min:0',
-                'quantity' => 'nullable|integer|min:0',
+                'quantity' => 'required|integer|min:1',
                 'category_id' => 'required|exists:category,category_id',
                 'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
                 'description' => 'nullable|string|max:500',
             ]);
 
-            // Handle file upload
+            // Handle file upload if a new image is provided
             if ($request->hasFile('image')) {
-                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->file('image')->move(public_path('images'), $imageName);
-                $imagePath = 'images/' . $imageName;
+                $imagePath = $request->file('image')->store('products', 'public');
             } else {
-                $imagePath = null;
+                $imagePath = $product->image;
             }
 
             // Update all fields
@@ -144,10 +141,11 @@ class ProductController extends Controller
             $product->category_id = $request->input('category_id');
             $product->description = $request->input('description');
             $product->image = $imagePath;
-            $product->quantity = $quantity; // Use our calculated $quantity value
+            $product->quantity = $request->input('quantity'); // Always update quantity
         }
 
         $product->save();
+
 
         $category = Category::find($product->category_id);
 
@@ -158,24 +156,26 @@ class ProductController extends Controller
             ->first();
 
         $last_updated_quantity_total = $last_log ? $last_log->quantity_total : 0;
-        $new_total = $last_updated_quantity_total + $quantity;
+
+        $quantity_added = $request->input('quantity');
+        $new_total = $last_updated_quantity_total + $quantity_added;
 
         DB::table('product_logs')->insert([
             'product_name' => $product->product_name,
             'category_name' => $category ? $category->category_name : 'Unknown',
             'restocked_by' => $user->first_name . ' ' . $user->last_name,
             'quantity_in_stock' => $last_updated_quantity_total,
-            'quantity_added' => $quantity,
+            'quantity_added' => $quantity_added,
             'quantity_total' => $new_total,
         ]);
 
-        // Update the product's quantity in the database with a where clause
-        DB::table('product')
-            ->where('product_id', $product_id)
-            ->update(['quantity' => $new_total]);
+        DB::table('product')->update([
+            'quantity' => $product->quantity = $new_total
+        ]);
 
         return redirect()->route('manage-product')->with('success', 'Product updated successfully!');
     }
+
 
     public function delete_product($product_id)
     {

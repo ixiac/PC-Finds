@@ -32,11 +32,11 @@
                 <ul class="list-unstyled ps-3 submenu">
 
                     @if (Auth::user()->role == 3)
-
-                        <li>
-                            <a class="nav-link text-light submenu-item" href="{{ route('admin-table') }}">Admin Account</a>
-                        </li>
-
+                    
+                    <li>
+                        <a class="nav-link text-light submenu-item" href="{{ route('admin-table') }}">Admin Account</a>
+                    </li>
+                    
                     @endif
 
                     <li>
@@ -69,7 +69,7 @@
             </div>
 
         </li>
-
+        
         <li class="nav-item">
 
             <a class="nav-link text-light" href="{{ route('manage-product') }}">
@@ -80,7 +80,7 @@
 
         <li class="nav-item">
 
-            <a class="nav-link text-light" href="{{ route('pending-order') }}">
+            <a class="nav-link text-light" href="{{ route('admin-logs') }}">
                 <i class="bi bi-list-check"></i> Logs
 
             </a>
@@ -89,46 +89,22 @@
 
         <li class="nav-item">
 
-            <a class="nav-link text-light d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                href="#orderCollapse" role="button" aria-expanded="false" aria-controls="refundCollapse">
-                <span><i class="bi bi-receipt"></i> Orders</span>
-                <i class="bi bi-chevron-down"></i>
+            <a class="nav-link text-light" href="{{ route('order-logs') }}">
+                <i class="bi bi-receipt"></i> Orders
             </a>
-
-            <div class="collapse" id="orderCollapse">
-                <ul class="list-unstyled ps-3 submenu">
-                    <li>
-                        <a class="nav-link text-light submenu-item" href="{{ route('pending-order') }}">Pending
-                            Orders</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-light submenu-item" href="{{ route('approved-order') }}">Approved
-                            Orders</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-light submenu-item" href="{{ route('deliver-order') }}">To Deliver </a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-light submenu-item" href="{{ route('completed-order') }}">Completed</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-light submenu-item" href="{{ route('cancelled-order') }}">Cancelled</a>
-                    </li>
-                </ul>
-            </div>
 
         </li>
 
         @if (Auth::user()->role == 3)
-
-            <li class="nav-item">
-
-                <a class="nav-link text-light" href="{{ route('admin-report') }}">
-                    <i class="bi bi-clipboard-data"></i> Reports
-                </a>
-
-            </li>
-
+        
+        <li class="nav-item">
+            
+            <a class="nav-link text-light" href="{{ route('admin-report') }}">
+                <i class="bi bi-clipboard-data"></i> Reports
+            </a>
+            
+        </li>
+        
         @endif
 
     </ul>
