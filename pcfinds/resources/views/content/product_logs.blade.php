@@ -6,7 +6,7 @@
 
         <div class="row">
 
-            <h3 class="mb-2" style="color: #2fa572;">Account Logs</h3>
+            <h3 class="mb-2" style="color: #2fa572;">Product Logs</h3>
             <a href="{{ ('manage-product') }}" class="btn text-light mb-4 text-nowrap me-2"
                 style="width: 100px; padding: 5px 50px 5px 10px;">
                 <i class="bi bi-arrow-left"></i> Go Back
