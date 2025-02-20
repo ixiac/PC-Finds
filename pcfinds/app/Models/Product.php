@@ -15,17 +15,17 @@ class Product extends Model
 
 
     protected $fillable = [
-        'product_name', 
-        'quantity', 
-        'retail_price', 
-        'selling_price', 
-        'date_added', 
-        'quantity_sold', 
-        'category_id', 
+        'product_name',
+        'quantity',
+        'retail_price',
+        'selling_price',
+        'date_added',
+        'quantity_sold',
+        'category_id',
         'image',
         'description',
 
-//         'product_name',
+        //         'product_name',
 //         'retail_price',
 //         'selling_price',
 //         'date_added',
@@ -33,7 +33,7 @@ class Product extends Model
 //         'quantity',
 //         'image',
 //         'description',
-//     ];
+    ];
 
     // No need to include 'product_id' in $fillable
 
