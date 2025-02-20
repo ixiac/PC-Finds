@@ -28,7 +28,7 @@
                                 {{ $log->activity }}
                             </span>
                         </td>
-                        <td>{{ $log->updated_at }}</td>
+                        <td>{{ \Carbon\Carbon::parse($log->updated_at)->format('F d, Y H:i') }}</td>
                     </tr>
 
                 @endforeach

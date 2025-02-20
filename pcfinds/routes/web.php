@@ -13,6 +13,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AdminDashboardController;
 
 
 // Sign Up
@@ -54,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/admin-dashboard', [CountAccountController::class, 'adminDashboard'])
-->name('admin-dashboard');
+    ->name('admin-dashboard');
 
 # Route for the home page
 Route::get('/', function () {
@@ -107,6 +108,9 @@ Route::middleware('auth')->group(function () {
 
 
 #Admin Accounts
+Route::get('/admin-dashboard/top-sales', [AdminDashboardController::class, 'topSellingProducts'])->name('admin-dashboard.top-sales');
+Route::get('/admin-dashboard/category-sales', [AdminDashboardController::class, 'categorySalesProgress'])->name('admin-dashboard.category-sales');
+
 
 # Route for admin table
 Route::get('/admin-table', [AdminTableController::class, 'admin_account_table'])
