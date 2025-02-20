@@ -100,6 +100,7 @@ class AdminTableController extends Controller
 
     public function delete_admin_account_table($id)
     {
+        \DB::table('account_logs')->where('id', $id)->delete();
         $account = Account::findOrFail($id);
         $account->delete();
 
@@ -200,6 +201,7 @@ class AdminTableController extends Controller
 
     public function delete_customer_account_table($id)
     {
+        \DB::table('account_logs')->where('id', $id)->delete();
         $customer_account = Account::findOrFail($id);
         $customer_account->delete();
 
