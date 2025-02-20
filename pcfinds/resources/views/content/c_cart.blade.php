@@ -82,12 +82,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-<<<<<<< HEAD
+
                     <button type="button" class="btn btn-success" id="Orderbtn" data-dismiss="modal">Confirm
                         Checkout</button>
-=======
                     <button type="button" class="btn btn-success" id="Orderbtn">Confirm Checkout</button>
->>>>>>> 9238bfa2395eed16c45984b468468dd8e726cafe
+
+                    <button type="button" class="btn btn-success" id="Orderbtn">Confirm Checkout</button>
+
                 </div>
             </div>
         </div>
@@ -133,14 +134,14 @@
 
                         const listItem = document.createElement('li');
                         listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-<<<<<<< HEAD
+
                         listItem.innerHTML = `
                                                 <span>${name} (x${quantity})</span>
                                                 <strong>₱${subtotal.toFixed(2)}</strong>
                                             `;
-=======
+
                         listItem.innerHTML = `<span>${name} (x${quantity})</span><strong>₱${subtotal.toFixed(2)}</strong>`;
->>>>>>> 9238bfa2395eed16c45984b468468dd8e726cafe
+
                         checkoutList.appendChild(listItem);
                     }
                 });
@@ -164,7 +165,6 @@
                     form.submit();
                 }
             });
-<<<<<<< HEAD
 
             function checkout(selectedItems) {
                 let form = document.createElement("form");
@@ -177,8 +177,7 @@
                 document.body.appendChild(form);
                 form.submit();
             }
-=======
->>>>>>> 9238bfa2395eed16c45984b468468dd8e726cafe
+
         });
     </script>
 

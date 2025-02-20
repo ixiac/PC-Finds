@@ -10,7 +10,7 @@
         @if($orders->isEmpty())
             <p class="text-center">You have no order history.</p>
         @else
-<<<<<<< HEAD
+
             <div class="row">
                 @foreach($orders as $order)
                     <div class="col-12 mb-3">
@@ -34,7 +34,7 @@
                                     {{ date('F j, Y - g:i A', strtotime($order->date_order_history)) }}</p>
                                 <p class="mb-1"><strong>Total Amount:</strong> ₱{{ number_format($order->total_amount, 2) }}</p>
                                 <p class="mb-1"><strong>Shipping Address:</strong> {{ $order->shipping_address }}</p>
-=======
+
             <div class="mb-2">
                 <ul class="nav nav-tabs nav-line nav-color-secondary" id="order-tabs" role="tablist">
                     <li class="nav-item submenu" role="presentation">
@@ -68,14 +68,13 @@
                 @php
                     $groupedOrders = $orders->groupBy('order_status');
                 @endphp
->>>>>>> 9238bfa2395eed16c45984b468468dd8e726cafe
 
                 {{-- Pending Orders (Active by Default) --}}
                 <div class="tab-pane fade show active" id="pending-orders" role="tabpanel">
                     @include('content.order_list', ['orders' => $groupedOrders->get(1, collect())])
                 </div>
 
-<<<<<<< HEAD
+
                                 {{-- Order Items --}}
                                 <div class="row">
                                     @foreach($order->items as $item)
@@ -105,7 +104,7 @@
             </div>
         @endif
     </div>
-=======
+
                 {{-- Approved & Ready to Deliver Orders --}}
                 <div class="tab-pane fade" id="approved-ready-orders" role="tabpanel">
                     @include('content.order_list', ['orders' => $groupedOrders->get(2, collect())->merge($groupedOrders->get(3, collect()))])
@@ -134,6 +133,33 @@
         @endif
     </div>
 
+                {{-- Approved & Ready to Deliver Orders --}}
+                <div class="tab-pane fade" id="approved-ready-orders" role="tabpanel">
+                    @include('content.order_list', ['orders' => $groupedOrders->get(2, collect())->merge($groupedOrders->get(3, collect()))])
+                </div>
+
+                {{-- Completed Orders --}}
+                <div class="tab-pane fade" id="completed-orders" role="tabpanel">
+                    @include('content.order_list', ['orders' => $groupedOrders->get(4, collect())])
+                </div>
+
+                {{-- Cancelled Orders --}}
+                <div class="tab-pane fade" id="cancelled-orders" role="tabpanel">
+                    @include('content.order_list', ['orders' => $groupedOrders->get(5, collect())])
+                </div>
+
+                {{-- Refunds (Waiting for Refund & Refunded) --}}
+                <div class="tab-pane fade" id="refund-orders" role="tabpanel">
+                    @include('content.order_list', ['orders' => $groupedOrders->get(6, collect())->merge($groupedOrders->get(7, collect()))])
+                </div>
+
+                {{-- All Orders --}}
+                <div class="tab-pane fade" id="all-orders" role="tabpanel">
+                    @include('content.order_list', ['orders' => $orders])
+                </div>
+            </div>
+        @endif
+    </div>
     <!-- Refund Request Modal -->
     <div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="refundModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -241,5 +267,4 @@
         });
     </script>
 
->>>>>>> 9238bfa2395eed16c45984b468468dd8e726cafe
 @endsection

@@ -12,14 +12,14 @@ use App\Http\Controllers\CountAccountController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderHistoryController;
-<<<<<<< HEAD
 use App\Http\Controllers\OrderController;
-=======
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\RefundController;
->>>>>>> 9238bfa2395eed16c45984b468468dd8e726cafe
 
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\RefundController;
 
 // Sign Up
 
