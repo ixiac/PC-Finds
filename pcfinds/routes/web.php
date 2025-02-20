@@ -12,6 +12,7 @@ use App\Http\Controllers\CountAccountController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderHistoryController;
+use App\Http\Controllers\ReportController;
 
 
 // Sign Up
@@ -192,8 +193,10 @@ Route::get('/order-logs', function () {
 
 #Route for reports
 Route::get('/admin-report', function () {
-    return view('content.report');
+    return view('content.report'); // Loads the Blade view
 })->name('admin-report');
+
+Route::get('/admin-report-data', [ReportController::class, 'lowStockData']);
 
 #Route for deleting customer account
 Route::delete('/delete-customer/{id}', [AdminTableController::class, 'delete_customer_account_table'])->name('delete_customer_account_table_route');
