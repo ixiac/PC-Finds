@@ -8,7 +8,6 @@ use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\AdminSignInController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductDetailsController;
@@ -36,31 +35,16 @@ Route::get('/sign-in', function () {
 Route::post('/sign-in', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-#Middleware for the user role
+# Middleware for the user role
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('content.product_page_default');
     })->name('customer.dashboard');
 
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard')->middleware('role:admin');
-
-    Route::get('/super-admin/dashboard', function () {
-        return view('superadmin.dashboard');
-    })->name('super-admin.dashboard')->middleware('role:super-admin');
+    Route::get('/admin-dashboard', function () {
+        return view('content.admin_dashboard');
+    })->name('admin-dashboard')->middleware(['role:admin', 'role:super-admin']);
 });
-
-
-// Admin
-
-# Route for admin sign-in form
-Route::get('/admin-sign-in', function () {
-    return view('paging.admin_sign_in');
-})->name('admin-sign-in');
-
-# Route for admin sign-in submission
-Route::post('/admin-sign-in', [AdminSignInController::class, 'admin_sign_in'])->name('admin_sign_in_route');
 
 # Route for the home page
 Route::get('/', function () {
@@ -85,7 +69,7 @@ Route::get('/getCategoryProducts/{categoryId}', [ProductCategoryController::clas
 Route::get('/product-details-{id}', [ProductDetailsController::class, 'show'])->name('product-details');
 
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     // Route for product details
     Route::get('/product-details', function () {
         return view('content.product_details');
@@ -96,9 +80,6 @@ Route::middleware('auth')->group(function() {
         return view('content.product_page_default');
     })->name('product-page');
 });
-
-# Route for form sign-in submission
-Route::post('/sign-in', [SignInController::class, 'account_sign_in'])->name('account_sign_in_route');
 
 # Route for the sign-in form
 Route::get('/admin-control-panel', function () {
@@ -197,9 +178,7 @@ Route::get('/admin-logs', function () {
 })->name('admin-logs');
 
 #Route for product logs
-Route::get('/admin-product-logs', function () {
-    return view('content.product_logs');
-})->name('admin-product-logs');
+Route::get('/product-logs', [ProductController::class, 'show_product_logs'])->name('product-logs');
 
 #Route for order logs
 Route::get('/order-logs', function () {

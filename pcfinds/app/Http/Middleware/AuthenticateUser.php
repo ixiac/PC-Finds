@@ -33,11 +33,9 @@ class AuthenticateUser
                 $role = $user->role;
                 if ($role == 1) {
                     return redirect()->route('customer.dashboard');
-                } elseif ($role == 2) {
-                    return redirect()->route('admin.dashboard');
-                } elseif ($role == 3) {
-                    return redirect()->route('super-admin.dashboard');
-                }
+                } elseif ($role == 2 || $role == 3) {
+                    return redirect()->route('admin-dashboard');
+                } 
             }
         }
 

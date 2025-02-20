@@ -13,7 +13,7 @@
             <div class="px-5 py-1 rounded-2 mb-5"
                 style="width:600px; border: solid 1px; border-color: rgba(255, 255, 255, 0.2) !important;">
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('add-product') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <p class="d-flex fw-bold mb-3 justify-content-center"
@@ -57,11 +57,11 @@
 
                     <!-- Product Stock Field -->
                     <div class="mb-2">
-                        <label for="productStock" class="form-label"
+                        <label for="quantity" class="form-label"
                             style="color: white; margin: 0; font-size: 14px;">Stock</label>
-                        <input type="number" class="d-inline-block form-control" id="productStock" name="product_stock"
+                        <input type="number" class="d-inline-block form-control" id="quantity" name="quantity"
                             style="height: 26px; font-size: 12px;" required>
-                        @error('product_stock')
+                        @error('quantity')
                             <div class="text-danger" style="font-size: 12px;">{{ $message }}</div>
                         @enderror
                     </div>
@@ -83,22 +83,34 @@
                         @enderror
                     </div>
 
+                    <!-- Product Description -->
+                    <div class="mb-2">
+                        <label for="productDescription" class="form-label"
+                            style="color: white; margin: 0; font-size: 14px;">Product Description</label>
+                        <textarea class="d-inline-block form-control" id="productDescription" name="description"
+                            style="height: 150px; font-size: 12px; resize: vertical;"
+                            required>{{ old('description', $product->description ?? '') }}</textarea>
+                        @error('description')
+                            <div class="text-danger" style="font-size: 12px;">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <!-- Image Preview -->
                     <div class="mt-4 mb-2 text-center">
                         <img class="img-fluid rounded-3" id="imagePreview"
                             src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
                             alt="Image Preview"
-                            style="width: 100%; max-height: 200px; object-fit: cover; border: 1px solid #ccc;">
+                            style="width: 100%; max-height: 200px; object-fit: contain; border: 1px solid #ccc;">
                     </div>
 
                     <!-- Product Image Field -->
                     <div class="mb-1">
                         <label for="productImage" class="form-label" style="color: white; margin: 0; font-size: 14px;">Add
                             Image</label>
-                        <input type="file" class="form-control pt-1" name="product_image" id="productImage"
+                        <input type="file" class="form-control pt-1" name="image" id="productImage"
                             style="height: 26px; font-size: 12px; color: grey;" accept="image/*"
                             onchange="previewImage(event)">
-                        @error('product_image')
+                        @error('image')
                             <div class="text-danger" style="font-size: 12px;">{{ $message }}</div>
                         @enderror
                     </div>

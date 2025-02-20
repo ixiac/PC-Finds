@@ -20,8 +20,9 @@ class Product extends Model
         'selling_price',
         'date_added',
         'category_id',
-        'product_stock',
-        'product_image',
+        'quantity',
+        'image',
+        'description',
     ];
 
     // No need to include 'product_id' in $fillable

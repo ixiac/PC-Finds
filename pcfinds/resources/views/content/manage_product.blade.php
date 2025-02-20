@@ -5,22 +5,26 @@
     <div class="container">
         <div class="row">
             <h3 class="mb-4" style="color: #2fa572;">Product List</h3>
-            <a href="{{ ('add-product') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
-                style="width: 140px; margin-top: 58px; right: 280px; background-color: #2fa572;">Add New Product</a>
 
-            <a href="{{ ('admin-product-logs') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
-                style="width: 120px; margin-top: 58px; right: 430px; background-color: #2fa572;">Product Logs</a>
+            @if (Auth::user()->role == 3)
+
+                <a href="{{ ('add-product') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
+                    style="width: 140px; margin-top: 58px; right: 280px; background-color: #2fa572;">Add New Product</a>
+
+                <a href="{{ ('product-logs') }}" class="btn btn-primary btn-sm add-btn position-absolute border-0"
+                    style="width: 120px; margin-top: 58px; right: 430px; background-color: #2fa572;">Product Logs</a>
+
+            @endif
 
             <table id="productTable" class="table table-striped">
                 <thead class="table-dark">
                     <tr>
                         <th>Product ID</th>
-                        <th class="p-0"></th>
                         <th>Product Name</th>
                         <th>Category</th>
                         <th>Retail</th>
                         <th>Price</th>
-                        <th>Stock</th>
+                        <th>Total Stock</th>
                         <th>Date Created</th>
                         <th>Actions</th>
                     </tr>
@@ -31,32 +35,34 @@
                         <tr>
                             <td>{{ $product->product_id }}</td>
                             <td>{{ $product->product_name }}</td>
-                            <td>{{ $product->category_id }}</td>
-                            <td>${{ number_format($product->retail_price, 2) }}</td>
-                            <td>${{ number_format($product->selling_price, 2) }}</td>
-                            <td>{{ $product->product_stock }}</td>
+                            <td>{{ $product->category->category_name ?? 'No Category' }}</td>
+                            <td>₱{{ number_format($product->retail_price, 2) }}</td>
+                            <td>₱{{ number_format($product->selling_price, 2) }}</td>
+                            <td>{{ $product->quantity }}</td>
                             <td>{{ $product->date_added }}</td>
                             <td>
                                 <a href="{{ route('edit-product', $product->product_id) }}"
-                                    class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('delete-product', $product->product_id) }}" method="POST"
-                                    class="d-inline-block delete-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                    class="btn btn-success btn-sm">Edit</a>
+                                @if (Auth::user()->role == 3)
+                                    <form action="{{ route('delete-product', $product->product_id) }}" method="POST"
+                                        class="d-inline-block delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
+
             </table>
+
         </div>
+
     </div>
 
-    <!-- Include SweetAlert2 from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
     <script>
         $(document).ready(function () {
             $('#productTable').DataTable({
