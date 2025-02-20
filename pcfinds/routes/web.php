@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
 
         return view('content.c_dashboard_default');
-    })->name('customer.dashboard');
+    })->name('customer-dashboard');
 
     // Admin Dashboard with role-based middleware
     Route::get('/admin-dashboard', [CountAccountController::class, 'adminDashboard'])
@@ -59,11 +59,6 @@ Route::middleware(['auth'])->group(function () {
 # Route for the home page
 Route::get('/', function () {
     return view('welcome');
-});
-
-# Route for the products page
-Route::get('/products_page', function () {
-    return view('products_page');
 });
 
 Route::get('/cbe', function () {
@@ -110,10 +105,6 @@ Route::middleware('auth')->group(function () {
 
 });
 
-# Route for admin dashboard
-Route::get('/admin-dashboard', function () {
-    return view('content.admin_dashboard');
-})->name('admin-dashboard');
 
 #Admin Accounts
 
