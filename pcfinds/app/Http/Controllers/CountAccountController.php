@@ -8,16 +8,10 @@ class CountAccountController extends Controller
 {
     public function adminDashboard()
     {
-        // Debugging
-        $accounts = Account::all();
-        $totalCustomers = Account::where('role', 1)->count();
-        $totalAdmins = Account::where('role', 2)->count();
-        $totalUsers = $totalCustomers + $totalAdmins;
+        $totalUsers = Account::count(); // Count all users
+        $totalCustomers = Account::where('role', 1)->count(); // Count customers
+        $totalAdmins = Account::where('role', 2)->count(); // Count admins
 
         return view('content.admin_dashboard', compact('totalUsers', 'totalCustomers', 'totalAdmins'));
     }
 }
-
-
-
-

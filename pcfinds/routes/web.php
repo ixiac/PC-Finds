@@ -50,11 +50,10 @@ Route::middleware(['auth'])->group(function () {
     })->name('customer-dashboard');
 
     // Admin Dashboard with role-based middleware
-    Route::get('/admin-dashboard', [CountAccountController::class, 'adminDashboard'])
-        ->name('admin-dashboard')
-        ->middleware('role:admin|super-admin');
 });
 
+Route::get('/admin-dashboard', [CountAccountController::class, 'adminDashboard'])
+->name('admin-dashboard');
 
 # Route for the home page
 Route::get('/', function () {
