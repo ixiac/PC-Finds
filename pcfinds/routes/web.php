@@ -3,14 +3,12 @@
 use App\Http\Controllers\AdminTableController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationControl;
-use App\Http\Controllers\SignInController;
 use App\Http\Controllers\ProductController;
-
-use App\Http\Controllers\AdminSignInController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\CountAccountController;
 
 // Sign Up
 
@@ -38,16 +36,20 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::get('/admin-logs', [AuthController::class, 'index'])->name('admin-logs');
 
 
-# Middleware for the user role
+
+// Middleware for authenticated users
 Route::middleware(['auth'])->group(function () {
+    // Customer Dashboard
     Route::get('/dashboard', function () {
         return view('content.product_page_default');
     })->name('customer-dashboard');
 
-    Route::get('/admin-dashboard', function () {
-        return view('content.admin_dashboard');
-    })->name('admin-dashboard')->middleware(['role:admin', 'role:super-admin']);
+    // Admin Dashboard with role-based middleware
+    Route::get('/admin-dashboard', [CountAccountController::class, 'adminDashboard'])
+        ->name('admin-dashboard')
+        ->middleware('role:admin|super-admin');
 });
+
 
 # Route for the home page
 Route::get('/', function () {
@@ -72,7 +74,7 @@ Route::get('/getCategoryProducts/{categoryId}', [ProductCategoryController::clas
 Route::get('/product-details-{id}', [ProductDetailsController::class, 'show'])->name('product-details');
 
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     // Route for product details
     Route::get('/product-details', function () {
         return view('content.product_details');
@@ -83,19 +85,6 @@ Route::middleware('auth')->group(function() {
         return view('content.product_page_default');
     })->name('product-page');
 });
-
-# Route for the sign-in form
-Route::get('/admin-control-panel', function () {
-    return view('paging.admin');
-})->name('admin');
-
-# Route for admin dashboard
-Route::get('/admin-dashboard', function () {
-    return view('content.admin_dashboard');
-})->name('admin-dashboard');
-
-
-// Manage Account
 
 #Admin Accounts
 
