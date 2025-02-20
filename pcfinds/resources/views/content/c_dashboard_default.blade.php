@@ -79,8 +79,8 @@
                     style="text-decoration: none; color: inherit;">
                     <div class="product-card" data-name="<?= strtolower($product->product_name) ?>">
                         <div class="card">
-                            <img src="<?= asset('images/' . $product->image) ?>" class="card-images"
-                                alt="<?= htmlspecialchars($product->product_name) ?>">
+                            <img src="{{ $product->image }}" class="card-images"
+                                alt="<?= htmlspecialchars($product->product_name) ?>" style="object-fit: contain;">
                             <div class="card-body">
                                 <h5 class="card-title"><?= htmlspecialchars($product->product_name) ?></h5>
                                 <p class="card-text">₱<?= number_format($product->selling_price, 2) ?></p>
