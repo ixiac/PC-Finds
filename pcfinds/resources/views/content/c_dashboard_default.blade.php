@@ -10,7 +10,7 @@
 
 @endphp
 
-@extends ('products_page')
+@extends ('customer.dashboard')
 
 @section ('content')
 
@@ -27,6 +27,14 @@
                             style="border: 1px solid #2fa572; background-color: #2fa572; color: white;">Search</button>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end mb-4">
+                <a href="<?= url('/cart') ?>" class="btn btn-lg" style="color: #343a40"><i
+                        class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <a href="<?= url('/order-history') ?>" class="btn btn-lg" style="color: #343a40"><i
+                        class="fa-solid fa-clipboard-list"></i>
+                </a>
             </div>
         </div>
 
@@ -88,7 +96,7 @@
         <!-- Search Results -->
         <div id="searchResults" class="product-grid mt-5" style="display: none;"></div>
 
-        <!-- Full Category Products View (Initially Hidden) -->
+        <!-- Full Category Products View -->
         <div id="categoryProducts" class="mt-5" style="display: none;">
             <button class="btn btn-lg mb-5" id="backToCategories" style="color: #2fa572">← Back</button>
             <h3 id="categoryTitle" class="mb-5 fw-bold" style="text-align: center"></h3>

@@ -11,6 +11,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderHistoryController;
+
 
 // Sign Up
 
@@ -38,7 +42,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 # Middleware for the user role
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('content.product_page_default');
+        return view('content.c_dashboard_default');
     })->name('customer.dashboard');
 
     Route::get('/admin-dashboard', function () {
@@ -69,6 +73,9 @@ Route::get('/getCategoryProducts/{categoryId}', [ProductCategoryController::clas
 Route::get('/product-details-{id}', [ProductDetailsController::class, 'show'])->name('product-details');
 
 
+
+# Customer Routes
+
 Route::middleware('auth')->group(function () {
     // Route for product details
     Route::get('/product-details', function () {
@@ -77,14 +84,28 @@ Route::middleware('auth')->group(function () {
 
     // Route for product page
     Route::get('/product-page', function () {
-        return view('content.product_page_default');
+        return view('content.c_dashboard_default');
     })->name('product-page');
-});
 
-# Route for the sign-in form
-Route::get('/admin-control-panel', function () {
-    return view('paging.admin');
-})->name('admin');
+
+    // Route for cart page
+    Route::get('/cart-page', function () {
+        return view('content.c_cart');
+    })->name('cart-page');
+
+    // Route for CartController
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->middleware('auth');
+    Route::delete('/cart/remove/{cart_id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+    // Route for checkout
+    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+
+    // Route for order history
+    Route::get('/order-history', [OrderHistoryController::class, 'index'])->name('order.history');
+
+
+});
 
 # Route for admin dashboard
 Route::get('/admin-dashboard', function () {
