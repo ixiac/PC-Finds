@@ -9,6 +9,10 @@ use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\CountAccountController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderHistoryController;
+
 
 // Sign Up
 
@@ -41,8 +45,9 @@ Route::get('/admin-logs', [AuthController::class, 'index'])->name('admin-logs');
 Route::middleware(['auth'])->group(function () {
     // Customer Dashboard
     Route::get('/dashboard', function () {
-        return view('content.product_page_default');
-    })->name('customer-dashboard');
+
+        return view('content.c_dashboard_default');
+    })->name('customer.dashboard');
 
     // Admin Dashboard with role-based middleware
     Route::get('/admin-dashboard', [CountAccountController::class, 'adminDashboard'])
@@ -74,6 +79,7 @@ Route::get('/getCategoryProducts/{categoryId}', [ProductCategoryController::clas
 Route::get('/product-details-{id}', [ProductDetailsController::class, 'show'])->name('product-details');
 
 
+# Customer Routes
 Route::middleware('auth')->group(function () {
     // Route for product details
     Route::get('/product-details', function () {
@@ -82,9 +88,32 @@ Route::middleware('auth')->group(function () {
 
     // Route for product page
     Route::get('/product-page', function () {
-        return view('content.product_page_default');
+        return view('content.c_dashboard_default');
     })->name('product-page');
+
+    // Route for cart page
+    Route::get('/cart-page', function () {
+        return view('content.c_cart');
+    })->name('cart-page');
+
+    // Route for CartController
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->middleware('auth');
+    Route::delete('/cart/remove/{cart_id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+    // Route for checkout
+    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+
+    // Route for order history
+    Route::get('/order-history', [OrderHistoryController::class, 'index'])->name('order.history');
+
+
 });
+
+# Route for admin dashboard
+Route::get('/admin-dashboard', function () {
+    return view('content.admin_dashboard');
+})->name('admin-dashboard');
 
 #Admin Accounts
 
@@ -164,9 +193,7 @@ Route::put('/update-product/{product_id}', [ProductController::class, 'update_pr
 Route::delete('/delete-product/{product_id}', [ProductController::class, 'delete_product'])->name('delete-product');
 
 #Route for product logs
-Route::get('/admin-product-logs', function () {
-    return view('content.product_logs');
-})->name('admin-product-logs');
+Route::get('/product-logs', [ProductController::class, 'show_product_logs'])->name('product-logs');
 
 #Route for order logs
 Route::get('/order-logs', function () {

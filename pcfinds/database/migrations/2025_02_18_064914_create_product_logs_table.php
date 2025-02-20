@@ -10,11 +10,13 @@ class CreateProductLogsTable extends Migration
     {
         Schema::create('product_logs', function (Blueprint $table) {
             $table->id('log_id');
-            $table->integer('product_id');
-            $table->integer('restocked_by');
-            $table->integer('quantity_restocked');
+            $table->text('product_name');
+            $table->text('category_name');
+            $table->text('restocked_by');
+            $table->integer('quantity_in_stock');
+            $table->integer('quantity_added');
+            $table->integer('quantity_total');
             $table->timestamp('date_restocked')->useCurrent();
-            $table->timestamps();
         });
     }
 
